@@ -78,7 +78,7 @@ public class Player_Stat : MonoBehaviour
     {
         healthBar.value = currentHealth / maxHealth;
     }
-      IEnumerator PlayerDeath() {
+    IEnumerator PlayerDeath() {
         input.actions.Disable();
         Scene scene = SceneManager.GetActiveScene();
         canDie = false;
