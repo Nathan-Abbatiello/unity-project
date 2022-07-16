@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3559603e89c089b469db1938fafdf0cb, type: 3}
   m_Name: Fireball
   m_EditorClassIdentifier: 
-  lifetime: 2
-  speed: 15
+  lifetime: 8.65
+  speed: 3.03
   damage: 10
   spellRadius: 1.5

@@ -1315,7 +1315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellToCast: {fileID: 5672859526736711832, guid: 734941fc3d50d1a418a4c5eb918d1d20, type: 3}
-  timeBetweenCasts: 0.25
+  timeBetweenCasts: 1.03
   castPoint: {fileID: 1388056648}
 --- !u!1 &1764214107
 GameObject:

@@ -26,6 +26,6 @@ public class Spell : MonoBehaviour
 
    private void OnTriggerEnter(Collider other){
         //  apply spell affect to other 
-        Destroy(this.gameObject); 
+        // Destroy(this.gameObject); 
    } 
 }
