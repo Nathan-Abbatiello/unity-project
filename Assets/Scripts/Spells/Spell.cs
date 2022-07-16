@@ -7,16 +7,16 @@ using UnityEngine;
 public class Spell : MonoBehaviour
 {
     public SpellScriptableObj SpellToCast;
-    private SphereCollider collider;
-    private Rigidbody rigidbody;
+    private SphereCollider _collider;
+    private Rigidbody _rigidbody;
 
     private void Awake(){
-        collider = GetComponent<SphereCollider>();
-        collider.isTrigger = true;
-        collider.radius = SpellToCast.spellRadius;
+        _collider = GetComponent<SphereCollider>();
+        _collider.isTrigger = true;
+        _collider.radius = SpellToCast.spellRadius;
 
-        rigidbody = GetComponent<Rigidbody>();
-        rigidbody.isKinematic = true;
+        _rigidbody = GetComponent<Rigidbody>();
+        _rigidbody.isKinematic = true;
         Destroy(this.gameObject, SpellToCast.lifetime);
     }
 
