@@ -37,7 +37,7 @@ public class Player_Magic : MonoBehaviour
            
 
         bool isSpellCastHeldDown = playerControls.Player.SpellCast.ReadValue<float>() > .1f;
-        Debug.Log(isSpellCastHeldDown);
+        // Debug.Log(isSpellCastHeldDown);
         if(!isCastingMagic){
             print("casting a spell");
             CastSpell();

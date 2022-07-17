@@ -25,7 +25,12 @@ public class Spell : MonoBehaviour
     }
 
    private void OnTriggerEnter(Collider other){
+        Debug.Log("spell trigger");
         //  apply spell affect to other 
-        // Destroy(this.gameObject); 
+        if (other.gameObject.CompareTag("Enemy")){
+            HealthComponent enemyHealth = other.GetComponent<HealthComponent>();
+            enemyHealth.TakeDamage(SpellToCast.damage);
+        }
+        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Environment")) Destroy(this.gameObject); 
    } 
 }
