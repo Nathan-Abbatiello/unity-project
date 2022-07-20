@@ -12,7 +12,9 @@ public class Player_Magic : MonoBehaviour
     private float currentCastTimer;
     public Transform castPoint;
 
-    private PlayerControls playerControls; 
+    bool inputCast = false;
+
+    public PlayerControls playerControls; 
     // Start is called before the first frame update
     void Awake()
     {
@@ -21,7 +23,6 @@ public class Player_Magic : MonoBehaviour
      
     }
     void Start(){
-            CastSpell();
     }
     private void onEnable(){
         playerControls.Enable();
@@ -31,19 +32,28 @@ public class Player_Magic : MonoBehaviour
         playerControls.Disable();
     }
 
+    public void OnSpellCast(){
+        inputCast = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
-           
-
         bool isSpellCastHeldDown = playerControls.Player.SpellCast.ReadValue<float>() > .1f;
-        // Debug.Log(isSpellCastHeldDown);
-        if(!isCastingMagic){
-            print("casting a spell");
-            CastSpell();
+        if(inputCast && !isCastingMagic){
+            Debug.Log("input click");
+            
+            inputCast = false;
             isCastingMagic = true;
             currentCastTimer = 0;
+            CastSpell();
         }
+        // if(!isCastingMagic){
+        //     // Debug.Log("casting a spell");
+        //     CastSpell();
+        //     isCastingMagic = true;
+        //     currentCastTimer = 0;
+        // }
 
         if(isCastingMagic){
             currentCastTimer += Time.deltaTime;
