@@ -62,6 +62,11 @@ public class Player_Magic : MonoBehaviour
     }
 
     void CastSpell(){
-        Instantiate(spellToCast, castPoint.position, castPoint.rotation );
+
+        Spell childObject = Instantiate(spellToCast, castPoint.position, castPoint.rotation );
+        if(spellToCast.SpellToCast.stickToCastPoint){
+            childObject.transform.parent = gameObject.transform;
+        }
+        
     }
 }

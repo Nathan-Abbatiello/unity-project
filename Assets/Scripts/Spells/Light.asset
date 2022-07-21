@@ -16,3 +16,4 @@ MonoBehaviour:
   speed: 0
   damage: 10
   spellRadius: 1.5
+  stickToCastPoint: 1

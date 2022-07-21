@@ -9,5 +9,6 @@ public class SpellScriptableObj : ScriptableObject
   public float speed = 15f; 
   public float damage = 10f;
   public float spellRadius = 1.5f;
+  public bool stickToCastPoint = false;
 
 }

@@ -18,6 +18,10 @@ public class Spell : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.isKinematic = true;
         Destroy(this.gameObject, SpellToCast.lifetime);
+
+        // if(SpellToCast.stickToCastPoint){
+        //     this.transform.parent = gameObject.transform;
+        // }
     }
 
     private void Update(){
