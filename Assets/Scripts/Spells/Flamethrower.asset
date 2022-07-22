@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3559603e89c089b469db1938fafdf0cb, type: 3}
-  m_Name: Shield
+  m_Name: Flamethrower
   m_EditorClassIdentifier: 
-  lifetime: 14.51
+  lifetime: 6.33
   speed: 0
-  damage: 0
-  spellRadius: 0
+  damage: 10
+  spellRadius: 0.12
   stickToCastPoint: 1
   destroyOnImpact: 0
+  damageOverTime: 1
