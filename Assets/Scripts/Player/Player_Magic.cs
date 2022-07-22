@@ -12,6 +12,8 @@ public class Player_Magic : MonoBehaviour
     private float currentCastTimer;
     public Transform castPoint;
 
+    public CharacterController _CharacterController;
+
     bool inputCast = false;
 
     public PlayerControls playerControls; 
@@ -20,6 +22,7 @@ public class Player_Magic : MonoBehaviour
     {
         isCastingMagic = false;
         playerControls = new PlayerControls();
+        _CharacterController = GetComponent<CharacterController>();
      
     }
     void Start(){
@@ -56,9 +59,11 @@ public class Player_Magic : MonoBehaviour
         // }
 
         if(isCastingMagic){
+            if(!spellToCast.SpellToCast.playerCanMove) _CharacterController.enabled = false;
             currentCastTimer += Time.deltaTime;
             if(currentCastTimer > timeBetweenCasts) isCastingMagic = false;
         }
+         if(!isCastingMagic) _CharacterController.enabled = true;
     }
 
     void CastSpell(){

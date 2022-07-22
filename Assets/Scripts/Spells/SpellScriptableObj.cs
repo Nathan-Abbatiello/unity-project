@@ -17,7 +17,11 @@ public class SpellScriptableObj : ScriptableObject
   [Header("Behaviour")]
   public bool stickToCastPoint = false;
   public bool destroyOnImpact = true;
-  public bool damageOverTime = false;
+
+  [Space(10)]
+  [Header("Player Effects")]
+  public bool playerCanMove = true;
+  // public status activestatus = ""
 
 
 
