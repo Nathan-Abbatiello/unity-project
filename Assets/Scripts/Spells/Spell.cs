@@ -36,6 +36,7 @@ public class Spell : MonoBehaviour
             enemyHealth.TakeDamage(SpellToCast.damage);
         }
         if ((other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Environment")) && SpellToCast.destroyOnImpact){ 
+            Instantiate(SpellToCast.hitEffect, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         } 
    } 

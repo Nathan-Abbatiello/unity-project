@@ -23,6 +23,8 @@ public class SpellScriptableObj : ScriptableObject
   public bool playerCanMove = true;
   // public status activestatus = ""
 
+  public Transform hitEffect;
+
 
 
 }
