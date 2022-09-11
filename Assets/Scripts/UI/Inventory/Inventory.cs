@@ -2,13 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using StarterAssets;
+using Cinemachine;
+using UnityEngine.InputSystem;
 
 
 public class Inventory : MonoBehaviour
 {   
 
+    // Cameras
+    [SerializeField] private CinemachineVirtualCamera playerCam;
+    [SerializeField] private CinemachineVirtualCamera inventoryMenuCam;
+
+    public PlayerInput input;
     private StarterAssetsInputs starterAssetsInputs;
     public GameObject menuAsset; 
+
+    public GameObject playerHUD;
 
     // is the inventory menu open 
     public bool menuOpen = false;
@@ -16,6 +25,7 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         starterAssetsInputs = GetComponent<StarterAssetsInputs>();
+        input = GetComponent<PlayerInput>();
     }
 
     // Update is called once per frame
@@ -38,16 +48,28 @@ public class Inventory : MonoBehaviour
     }
 
     void OpenMenu(){
-        Time.timeScale = 0;
-        AudioListener.pause = true;
+        // pause audio
+        AudioListener.pause = true;  
+        // change camera 
+        inventoryMenuCam.Priority = 20;
+        playerCam.Priority = 0;
+        // pause time
+        // Time.timeScale = 0;
         menuOpen = true;
-        menuAsset.SetActive(true);
+        playerHUD.SetActive(false);
+        // input.SwitchCurrentActionMap("UI");
     }
 
     void CloseMenu(){
-        Time.timeScale = 1;
+        // pause audio
         AudioListener.pause = false;
+        // change camera 
+        playerCam.Priority = 20;
+        inventoryMenuCam.Priority = 0;
+        // resume time
+        // Time.timeScale = 1;
         menuOpen = false;
-        menuAsset.SetActive(false);
+        playerHUD.SetActive(true);
+        // input.SwitchCurrentActionMap("Player");
     }
 }
