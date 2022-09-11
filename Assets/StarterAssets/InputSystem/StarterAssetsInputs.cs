@@ -14,6 +14,8 @@ namespace StarterAssets
 		public bool sprint;
 		public bool spellCast;
 
+		public bool inventoryMenu;
+
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -49,6 +51,11 @@ namespace StarterAssets
 		{
 			SpellCastInput(value.isPressed);
 		}
+
+		public void OnInventoryMenu(InputValue value)
+		{
+			InventoryMenuInput(value.isPressed);
+		}
 #endif
 
 
@@ -72,9 +79,14 @@ namespace StarterAssets
 			sprint = newSprintState;
 		}
 
-		public void SpellCastInput(bool newSprintState)
+		public void SpellCastInput(bool newSpellState)
 		{
-			spellCast = newSprintState;
+			spellCast = newSpellState;
+		}
+
+		public void InventoryMenuInput(bool newInventoryMenuState)
+		{
+			inventoryMenu = newInventoryMenuState;
 		}
 
 		private void OnApplicationFocus(bool hasFocus)
