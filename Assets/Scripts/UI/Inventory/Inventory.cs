@@ -5,6 +5,8 @@ using StarterAssets;
 using Cinemachine;
 using UnityEngine.InputSystem;
 
+// this class also handles switching between user inputs
+// needs to be separated into separate script
 
 public class Inventory : MonoBehaviour
 {   
@@ -13,7 +15,9 @@ public class Inventory : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera playerCam;
     [SerializeField] private CinemachineVirtualCamera inventoryMenuCam;
 
+    public PlayerControls inputCtrl;
     public PlayerInput input;
+
     private StarterAssetsInputs starterAssetsInputs;
     public GameObject menuAsset; 
 
@@ -22,23 +26,31 @@ public class Inventory : MonoBehaviour
     // is the inventory menu open 
     public bool menuOpen = false;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         starterAssetsInputs = GetComponent<StarterAssetsInputs>();
+        inputCtrl = new PlayerControls();
         input = GetComponent<PlayerInput>();
+        input.SwitchCurrentActionMap("Player");
+
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(starterAssetsInputs.inventoryMenu){
-            ToggleMenu();
-            starterAssetsInputs.inventoryMenu = false;
-        }
+    void OnEnable(){
+        inputCtrl.UI.CloseMenu.performed += ToggleMenu;
+        inputCtrl.Player.Enable();
+
+        inputCtrl.Player.InventoryMenu.performed += ToggleMenu;
+        inputCtrl.Player.Enable();
     }
 
+    void OnDisable(){
+        inputCtrl.UI.CloseMenu.Disable();
+        inputCtrl.Player.InventoryMenu.Disable();
+    }
     // decide whether to open or close menu 
-    void ToggleMenu(){
+    void ToggleMenu(InputAction.CallbackContext context){
+        Debug.Log("togglemenu");
         if(menuOpen){
             CloseMenu();
         }
@@ -48,6 +60,8 @@ public class Inventory : MonoBehaviour
     }
 
     void OpenMenu(){
+        inputCtrl.UI.Enable();
+        inputCtrl.Player.Disable();
         // pause audio
         AudioListener.pause = true;  
         // change camera 
@@ -57,10 +71,13 @@ public class Inventory : MonoBehaviour
         // Time.timeScale = 0;
         menuOpen = true;
         playerHUD.SetActive(false);
-        // input.SwitchCurrentActionMap("UI");
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     void CloseMenu(){
+        inputCtrl.Player.Enable();
+        inputCtrl.UI.Disable();
         // pause audio
         AudioListener.pause = false;
         // change camera 
@@ -70,6 +87,8 @@ public class Inventory : MonoBehaviour
         // Time.timeScale = 1;
         menuOpen = false;
         playerHUD.SetActive(true);
-        // input.SwitchCurrentActionMap("Player");
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+       
     }
 }

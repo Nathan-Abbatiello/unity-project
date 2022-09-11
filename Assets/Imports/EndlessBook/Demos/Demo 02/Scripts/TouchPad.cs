@@ -4,6 +4,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
+    using UnityEngine.InputSystem;
 
     /// <summary>
     /// Simple touch pad colliders that handle input on the book pages.
@@ -111,20 +112,20 @@
 
         void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Mouse.current.leftButton.wasPressedThisFrame)
             {
                 // left mouse button pressed
-                DetectTouchDown(Input.mousePosition);
+                DetectTouchDown(Mouse.current.position.ReadValue());
             }
-            if (Input.GetMouseButtonUp(0))
+            if (Mouse.current.leftButton.wasReleasedThisFrame)
             {
                 // left mouse button un-pressed
-                DetectTouchUp(Input.mousePosition);
+                DetectTouchUp(Mouse.current.position.ReadValue());
             }
-            else if (touchDown && Input.GetMouseButton(0))
+            else if (touchDown && Mouse.current.leftButton.isPressed)
             {
                 // dragging
-                DetectDrag(Input.mousePosition);
+                DetectDrag(Mouse.current.position.ReadValue());
             }
         }
 

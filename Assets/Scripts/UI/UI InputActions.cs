@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using echo17.EndlessBook;
+using UnityEngine.InputSystem;
 
-public class InventoryBook : MonoBehaviour
+
+public class UIInputActions : MonoBehaviour
 {
-    public EndlessBook book;
+    public PlayerInput input;
 
     // Start is called before the first frame update
     void Start()
     {
-        book.SetState(EndlessBook.StateEnum.OpenMiddle);
+        // input.UI.CloseMenu.performed += _ => 
     }
 
     // Update is called once per frame
