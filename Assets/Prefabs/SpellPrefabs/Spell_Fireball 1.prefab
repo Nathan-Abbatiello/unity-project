@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6469009580898942101}
   - component: {fileID: 4409189163630381739}
   - component: {fileID: 5476552538171277352}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Spell_Fireball 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 4681249483044231562}
   - component: {fileID: 4681249483044231563}
   - component: {fileID: 4681249483044231560}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FireballGFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ SphereCollider:
   m_GameObject: {fileID: 4681249483044231558}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 4681249484016667946}
   - component: {fileID: 4681249484016667948}
   - component: {fileID: 4681249484016667949}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}

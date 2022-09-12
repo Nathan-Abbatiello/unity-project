@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class SpellScriptableObj : ScriptableObject
 {
+  // A scriptable object that contains spell attributes
   [Header("Attributes")]
 
   public float damage = 10f;

@@ -8793,7 +8793,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8944336655422409496, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: field of view
-      value: 10
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409496, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: far clip plane
@@ -8817,31 +8817,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.61800015
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -197.6376
+      value: 1.605
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000062231875
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000062231875
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -9355,7 +9355,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 27
+  m_Priority: 0
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
@@ -17437,6 +17437,10 @@ PrefabInstance:
       propertyPath: jump
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 135756642000475821, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: spellCast
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3893294197879345259, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -17484,6 +17488,22 @@ PrefabInstance:
     - target: {fileID: 4416926081852918481, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: m_Name
       value: PlayerArmature
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: Gravity
+      value: -27.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: JumpHeight
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: SprintSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: LockCameraPosition
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6982812146204527121, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: m_WarningMessage
@@ -17607,18 +17627,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb9df345b3a22b428ea91247572f97f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aimVirtualCamera: {fileID: 1148898119}
-  normalSensitivity: 0
   aimSensitivity: 0
   aimColliderLayerMask:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 51
   debugTransform: {fileID: 0}
-  pfBulletProjectile: {fileID: 0}
-  spawnBulletPosition: {fileID: 0}
-  vfxHit: {fileID: 0}
-  spellToCast: {fileID: 5476552538171277352, guid: 5e91fe41afc7d5142b2f0edb5e331e8e, type: 3}
+  spellToCast: {fileID: 5476552538171277352, guid: 283bc771750becc4e97330391656cb04, type: 3}
   timeBetweenCasts: 1.03
+  currentCastTimer: 0
   castPoint: {fileID: 1388056648}
   _CharacterController: {fileID: 0}
 --- !u!114 &1762682273
@@ -17635,7 +17651,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCam: {fileID: 1148898119}
   inventoryMenuCam: {fileID: 1286406028}
-  input: {fileID: 0}
+  playerInput: {fileID: 0}
   menuAsset: {fileID: 355873901}
   playerHUD: {fileID: 1715195614}
   menuOpen: 0

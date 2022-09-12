@@ -15,8 +15,8 @@ public class Inventory : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera playerCam;
     [SerializeField] private CinemachineVirtualCamera inventoryMenuCam;
 
-    public PlayerControls inputCtrl;
-    public PlayerInput input;
+    public PlayerControls playerCtrls;
+    public PlayerInput playerInput;
 
     private StarterAssetsInputs starterAssetsInputs;
     public GameObject menuAsset; 
@@ -29,24 +29,20 @@ public class Inventory : MonoBehaviour
     void Awake()
     {
         starterAssetsInputs = GetComponent<StarterAssetsInputs>();
-        inputCtrl = new PlayerControls();
-        input = GetComponent<PlayerInput>();
-        input.SwitchCurrentActionMap("Player");
-
-
+        playerCtrls = new PlayerControls();
+        playerInput = GetComponent<PlayerInput>();
     }
 
     void OnEnable(){
-        inputCtrl.UI.CloseMenu.performed += ToggleMenu;
-        inputCtrl.Player.Enable();
+        playerCtrls.UI.CloseMenu.performed += ToggleMenu;
 
-        inputCtrl.Player.InventoryMenu.performed += ToggleMenu;
-        inputCtrl.Player.Enable();
+        playerCtrls.Player.InventoryMenu.performed += ToggleMenu;
+        playerCtrls.Player.Enable();
     }
 
     void OnDisable(){
-        inputCtrl.UI.CloseMenu.Disable();
-        inputCtrl.Player.InventoryMenu.Disable();
+        playerCtrls.UI.CloseMenu.Disable();
+        playerCtrls.Player.InventoryMenu.Disable();
     }
     // decide whether to open or close menu 
     void ToggleMenu(InputAction.CallbackContext context){
@@ -60,8 +56,9 @@ public class Inventory : MonoBehaviour
     }
 
     void OpenMenu(){
-        inputCtrl.UI.Enable();
-        inputCtrl.Player.Disable();
+        playerInput.SwitchCurrentActionMap("UI");
+        playerCtrls.UI.Enable();
+        playerCtrls.Player.Disable();
         // pause audio
         AudioListener.pause = true;  
         // change camera 
@@ -71,13 +68,15 @@ public class Inventory : MonoBehaviour
         // Time.timeScale = 0;
         menuOpen = true;
         playerHUD.SetActive(false);
+        // allow cursor to move and be seen
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
 
     void CloseMenu(){
-        inputCtrl.Player.Enable();
-        inputCtrl.UI.Disable();
+        playerInput.SwitchCurrentActionMap("Player");
+        playerCtrls.Player.Enable();
+        playerCtrls.UI.Disable();
         // pause audio
         AudioListener.pause = false;
         // change camera 
@@ -87,6 +86,7 @@ public class Inventory : MonoBehaviour
         // Time.timeScale = 1;
         menuOpen = false;
         playerHUD.SetActive(true);
+        // lock and hide cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
        

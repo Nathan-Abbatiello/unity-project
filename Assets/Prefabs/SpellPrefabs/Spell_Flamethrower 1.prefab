@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8045518311784664701}
   - component: {fileID: 3183795546672576521}
   - component: {fileID: 3526922716274177347}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4825,7 +4825,7 @@ GameObject:
   - component: {fileID: 4409189163630381739}
   - component: {fileID: 5476552538171277352}
   - component: {fileID: 8434308982003435700}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Spell_Flamethrower 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

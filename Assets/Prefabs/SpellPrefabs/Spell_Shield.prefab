@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1816935409837054154}
   - component: {fileID: 9061544809533943540}
   - component: {fileID: 932556645471904887}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Spell_Shield
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 5274559920724945972}
   - component: {fileID: 5414839531324185893}
   - component: {fileID: 3077406404963041875}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4902,7 +4902,7 @@ GameObject:
   - component: {fileID: 7149378533652965020}
   - component: {fileID: 4455400853424481508}
   - component: {fileID: 6297218026488432138}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

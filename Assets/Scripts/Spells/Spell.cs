@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Spell : MonoBehaviour
 {
+    // A script to handle and apply spell attributes
     public SpellScriptableObj SpellToCast;
     private SphereCollider _collider;
     private Rigidbody _rigidbody;
@@ -17,14 +18,12 @@ public class Spell : MonoBehaviour
 
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.isKinematic = true;
+        // maximum lifetime of spell before destroy
         Destroy(this.gameObject, SpellToCast.lifetime);
-
-        // if(SpellToCast.stickToCastPoint){
-        //     this.transform.parent = gameObject.transform;
-        // }
     }
 
     private void Update(){
+        // applies constant forward velocity if spell has initial velocity 
         if(SpellToCast.speed > 0 ) transform.Translate(Vector3.forward * SpellToCast.speed *Time.deltaTime);
     }
 
@@ -35,9 +34,11 @@ public class Spell : MonoBehaviour
             HealthComponent enemyHealth = other.GetComponent<HealthComponent>();
             enemyHealth.TakeDamage(SpellToCast.damage);
         }
+        // Destroy spell
         if ((other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Environment")) && SpellToCast.destroyOnImpact){ 
-            Instantiate(SpellToCast.hitEffect, transform.position, Quaternion.identity);
+            Transform hitvfx = Instantiate(SpellToCast.hitEffect, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
+            Destroy(hitvfx.gameObject, 5f);
         } 
    } 
 }

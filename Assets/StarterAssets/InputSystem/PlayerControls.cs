@@ -323,7 +323,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d9412a6e-829e-4336-9fe1-8bae25805a33"",
-                    ""path"": ""<Keyboard>/m"",
+                    ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardMouse"",
