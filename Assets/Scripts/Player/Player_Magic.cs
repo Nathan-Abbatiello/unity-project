@@ -47,18 +47,33 @@ public class Player_Magic : MonoBehaviour
         FollowCastPoint();
 
         // Cast spell if cooldown finished
-        // if(!isCastingMagic){
-            Cast();
-            // isCastingMagic = true;
+        if(!isCastingMagic && starterAssetsInputs.spellCast){
+
+            // animator.SetLayerWeight(1,  0f);
             currentCastTimer = 0;
+            isCastingMagic = true;
+            
+        }
+            Cast();
+
+         
             _CharacterController.enabled = true;
         // }
 
         // Increment cast timer
         if(isCastingMagic){
+            // animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 13f));
+            animator.SetLayerWeight(1,  1f);
+
             if(!spellToCast.SpellToCast.playerCanMove) _CharacterController.enabled = false;
             currentCastTimer += Time.deltaTime;
             if(currentCastTimer > timeBetweenCasts) isCastingMagic = false;
+        }
+        else{
+            animator.SetLayerWeight(1,  0f);
+
+            // animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 20f));
+
         }
     }
 
@@ -77,7 +92,6 @@ public class Player_Magic : MonoBehaviour
 
             thirdPersonController.SetSensitivity(aimSensitivity);
             thirdPersonController.SetRotateOnMove(false);
-            // animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 13f));
             Vector3 worldAimTarget = mouseWorldPosition;
             worldAimTarget.y = transform.position.y;
             Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
@@ -87,6 +101,9 @@ public class Player_Magic : MonoBehaviour
     // Instantiate Spell
     void Cast(){
         if (starterAssetsInputs.spellCast) {
+            // animator.SetLayerWeight(1,  1f);
+
+
             // Projectile Shoot
             Vector3 aimDir = (mouseWorldPosition - castPoint.position).normalized;
 

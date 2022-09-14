@@ -35,6 +35,7 @@ public class Inventory : MonoBehaviour
 
     void OnEnable(){
         playerCtrls.UI.CloseMenu.performed += ToggleMenu;
+        playerCtrls.UI.CloseMenu.Disable();
 
         playerCtrls.Player.InventoryMenu.performed += ToggleMenu;
         playerCtrls.Player.Enable();
@@ -60,7 +61,7 @@ public class Inventory : MonoBehaviour
         playerCtrls.UI.Enable();
         playerCtrls.Player.Disable();
         // pause audio
-        AudioListener.pause = true;  
+        // AudioListener.pause = true;  
         // change camera 
         inventoryMenuCam.Priority = 20;
         playerCam.Priority = 0;
@@ -78,7 +79,7 @@ public class Inventory : MonoBehaviour
         playerCtrls.Player.Enable();
         playerCtrls.UI.Disable();
         // pause audio
-        AudioListener.pause = false;
+        // AudioListener.pause = false;
         // change camera 
         playerCam.Priority = 20;
         inventoryMenuCam.Priority = 0;
