@@ -15,7 +15,7 @@ MonoBehaviour:
   damage: 10
   lifetime: 8.65
   spellRadius: 0.3
-  speed: 6.76
+  speed: 15
   stickToCastPoint: 0
   destroyOnImpact: 1
   playerCanMove: 1
