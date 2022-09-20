@@ -110,7 +110,7 @@ namespace UniStorm.Example
         {
             if (UniStormSystem.Instance.CloudShadows == UniStormSystem.EnableFeature.Enabled)
             {
-                UniStormSystem.Instance.m_CloudShadows.enabled = !UniStormSystem.Instance.m_CloudShadows.enabled;
+                UniStormSystem.Instance.m_CloudShadows.isEnabled = !UniStormSystem.Instance.m_CloudShadows.isEnabled;
             }
         }
 
@@ -126,11 +126,11 @@ namespace UniStorm.Example
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                DemoMenu.SetActive(!DemoMenu.activeSelf);
-                SliderMenu.SetActive(DemoMenu.activeSelf);
-            }
+            // if (Input.GetKeyDown(KeyCode.Escape))
+            // {
+                // DemoMenu.SetActive(!DemoMenu.activeSelf);
+                // SliderMenu.SetActive(DemoMenu.activeSelf);
+            // }
         }
 
         public void QuitButton()
