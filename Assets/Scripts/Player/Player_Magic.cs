@@ -63,14 +63,15 @@ public class Player_Magic : MonoBehaviour
         // Increment cast timer
         if(isCastingMagic){
             // animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 13f));
-            animator.SetLayerWeight(1,  1f);
+            // animator.SetLayerWeight(1,  1f);
+            animator.Play("Magic Heal");
 
             if(!spellToCast.SpellToCast.playerCanMove) _CharacterController.enabled = false;
             currentCastTimer += Time.deltaTime;
             if(currentCastTimer > timeBetweenCasts) isCastingMagic = false;
         }
         else{
-            animator.SetLayerWeight(1,  0f);
+            // animator.SetLayerWeight(1,  0f);
 
             // animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 20f));
 
