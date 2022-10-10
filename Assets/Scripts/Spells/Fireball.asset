@@ -16,7 +16,9 @@ MonoBehaviour:
   lifetime: 8.65
   spellRadius: 0.3
   speed: 15
+  castPoint: RHCastPoint
   stickToCastPoint: 0
   destroyOnImpact: 1
+  SpawnOffset: {x: 0, y: 0, z: 0}
   playerCanMove: 1
   hitEffect: {fileID: 4749997885797464389, guid: 3afe999b2e3c4e242be0d174cd19fe2a, type: 3}
