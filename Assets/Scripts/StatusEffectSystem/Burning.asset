@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 375ef15071aa2d541ae7c15ba8c85e72, type: 3}
   m_Name: Burning
   m_EditorClassIdentifier: 
-  healthOverTime: 0
-  lifetime: 0
-  tickSpeed: 0
+  healthOverTime: 2
+  lifetime: 4
+  tickSpeed: 1
   movementPenalty: 0
   effectParticles: {fileID: 0}
