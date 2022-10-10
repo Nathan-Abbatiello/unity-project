@@ -16,6 +16,7 @@ public class Player_Magic : MonoBehaviour
     private Animator animator;
     ///////////////////////////////////////////
     [SerializeField] private Spell spellToCast;
+    private SpellScriptableObj spellProperties;
 
     [SerializeField] private float timeBetweenCasts = 0.25f;
     private bool isCastingMagic = false;
@@ -30,63 +31,43 @@ public class Player_Magic : MonoBehaviour
 
     public CharacterController _CharacterController;
 
+  
+
     // Start is called before the first frame update
     void Awake()
     {
+        //  get components
         thirdPersonController = GetComponent<ThirdPersonController>();
         starterAssetsInputs = GetComponent<StarterAssetsInputs>();
         animator = GetComponent<Animator>();
-        aimSensitivity = 1f;
-
-        isCastingMagic = false;
         _CharacterController = GetComponent<CharacterController>();
-
-        // assign the cast point to use from the spellscriptobj
-        for (int i = 0; i < 3; i++)
-        {
-            if(castPoints[i].name == spellToCast.SpellToCast.castPoint){
-                castPoint = castPoints[i];
-            }
-        }
-        castPoint.position += spellToCast.SpellToCast.SpawnOffset;
+        
+        aimSensitivity = 1f;
+        // current spell scriptableObj
+        spellProperties = spellToCast.SpellToCast;
+        isCastingMagic = false;
+       
+       setCastPoint();
     }
 
     // Update is called once per frame
     void Update()
     {
-
         DirectionalAim();
         FollowCastPoint();
 
         // Cast spell if cooldown finished
         if(!isCastingMagic && starterAssetsInputs.spellCast){
-
-            // animator.SetLayerWeight(1,  0f);
             currentCastTimer = 0;
             isCastingMagic = true;
-            
-        }
-            Cast();
-
-         
-            _CharacterController.enabled = true;
-        // }
-
-        // Increment cast timer
-        if(isCastingMagic){
-            // animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 13f));
-            // animator.SetLayerWeight(1,  1f);
             animator.Play("Magic Heal");
-
-            if(!spellToCast.SpellToCast.playerCanMove) _CharacterController.enabled = false;
-            currentCastTimer += Time.deltaTime;
-            if(currentCastTimer > timeBetweenCasts) isCastingMagic = false;
+            Cast();
+            _CharacterController.enabled = true;
         }
-        else{
-            // animator.SetLayerWeight(1,  0f);
-
-            // animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 20f));
-
+      
+        // currently casting    
+        if(isCastingMagic){
+            Casting();
         }
     }
 
@@ -102,7 +83,6 @@ public class Player_Magic : MonoBehaviour
             mouseWorldPosition = raycastHit.point;
             hitTransform = raycastHit.transform;
         }
-
             thirdPersonController.SetSensitivity(aimSensitivity);
             thirdPersonController.SetRotateOnMove(false);
             Vector3 worldAimTarget = mouseWorldPosition;
@@ -114,21 +94,39 @@ public class Player_Magic : MonoBehaviour
     // Instantiate Spell
     void Cast(){
         if (starterAssetsInputs.spellCast) {
-            // animator.SetLayerWeight(1,  1f);
-
-
-            // Projectile Shoot
             Vector3 aimDir = (mouseWorldPosition - castPoint.position).normalized;
-
+            // Spawn spell
             childObject = Instantiate(spellToCast, castPoint.position, Quaternion.LookRotation(aimDir, Vector3.up) );
             Physics.IgnoreCollision(childObject.GetComponent<Collider>(), GetComponent<Collider>());
             starterAssetsInputs.spellCast = false;
         }
     }
 
+    // Things that are done during casting duration
+    void Casting(){
+        // Disable player movement
+        if(!spellProperties.playerCanMove) _CharacterController.enabled = false;
+        // Increment cast timer
+        currentCastTimer += Time.deltaTime;
+        if(currentCastTimer > timeBetweenCasts) isCastingMagic = false;
+    }
+
+    // Spell follow cast point
     void FollowCastPoint(){
-        if(spellToCast.SpellToCast.stickToCastPoint && childObject != null){
-            childObject.transform.position = Vector3.Lerp(childObject.transform.position, castPoint.position, Time.deltaTime *spellToCast.SpellToCast.stickStrength);
+        if(spellProperties.stickToCastPoint && childObject != null){
+            childObject.transform.position = Vector3.Lerp(childObject.transform.position, castPoint.position, Time.deltaTime *spellProperties.stickStrength);
         }
+    }
+
+    // Set position for spell to spawn 
+    void setCastPoint(){
+         // assign the cast point to use from the spellscriptobj
+        for (int i = 0; i < 3; i++)
+        {
+            if(castPoints[i].name == spellProperties.castPoint){
+                castPoint = castPoints[i];
+            }
+        }
+        castPoint.position += spellProperties.SpawnOffset;
     }
 }

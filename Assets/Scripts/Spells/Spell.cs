@@ -7,6 +7,7 @@ using UnityEngine;
 public class Spell : MonoBehaviour
 {
     // A script to handle and apply spell attributes
+    [SerializeField] StatusEffectData _data;
     public SpellScriptableObj SpellToCast;
     private SphereCollider _collider;
     private Rigidbody _rigidbody;
@@ -29,6 +30,11 @@ public class Spell : MonoBehaviour
 
    private void OnTriggerEnter(Collider other){
         Debug.Log("spell trigger");
+        var effectable = other.GetComponent<IEffectable>();
+        if(effectable != null){
+            effectable.ApplyEffect(_data);
+        } 
+
         //  apply spell affect to other 
         if (other.gameObject.CompareTag("Enemy")){
             HealthComponent enemyHealth = other.GetComponent<HealthComponent>();
