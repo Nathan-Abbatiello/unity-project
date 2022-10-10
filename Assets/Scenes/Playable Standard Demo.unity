@@ -8136,7 +8136,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 51
   debugTransform: {fileID: 0}
-  spellToCast: {fileID: 5476552538171277352, guid: 5e91fe41afc7d5142b2f0edb5e331e8e, type: 3}
+  spellToCast: {fileID: 5476552538171277352, guid: 283bc771750becc4e97330391656cb04, type: 3}
   timeBetweenCasts: 1.03
   currentCastTimer: 0
   castPoint: {fileID: 344799302}

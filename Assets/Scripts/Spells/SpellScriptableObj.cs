@@ -18,6 +18,7 @@ public class SpellScriptableObj : ScriptableObject
   [Header("Behaviour")]
   public bool stickToCastPoint = false;
   public bool destroyOnImpact = true;
+  public Vector3 SpawnOffset = new Vector3(0,0,0);
 
   [Space(10)]
   [Header("Player Effects")]

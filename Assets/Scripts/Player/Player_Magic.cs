@@ -37,6 +37,8 @@ public class Player_Magic : MonoBehaviour
 
         isCastingMagic = false;
         _CharacterController = GetComponent<CharacterController>();
+
+        castPoint.position += spellToCast.SpellToCast.SpawnOffset;
     }
 
     // Update is called once per frame
