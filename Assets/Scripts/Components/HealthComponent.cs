@@ -12,6 +12,7 @@ public class HealthComponent : MonoBehaviour
     }
 
     public void TakeDamage(float damage){
+        // currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         currentHealth -= damage;
         Debug.Log(currentHealth);
         if(currentHealth<= 0 ) Destroy(this.gameObject);
