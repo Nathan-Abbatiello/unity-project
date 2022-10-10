@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 [CreateAssetMenu(fileName = "New Spell", menuName = "Spells")]
 
@@ -16,7 +17,11 @@ public class SpellScriptableObj : ScriptableObject
 
   [Space(10)]
   [Header("Behaviour")]
+  public string castPoint = "RHCastPoint";
   public bool stickToCastPoint = false;
+
+  [Range(0, 30)]
+  public int stickStrength;
   public bool destroyOnImpact = true;
   public Vector3 SpawnOffset = new Vector3(0,0,0);
 

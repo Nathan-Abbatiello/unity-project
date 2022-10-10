@@ -2443,7 +2443,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.0929663, y: 1}
+    m_SensorSize: {x: 1.6766227, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -4152,7 +4152,7 @@ GameObject:
   m_Component:
   - component: {fileID: 344799302}
   m_Layer: 8
-  m_Name: SpellCastPoint
+  m_Name: RHCastPoint
   m_TagString: Untagged
   m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -4896,6 +4896,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 437307126}
   m_Mesh: {fileID: 0}
+--- !u!1 &438678829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 438678830}
+  m_Layer: 8
+  m_Name: FollowCastPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &438678830
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438678829}
+  m_LocalRotation: {x: -0.000000047963113, y: 0.00000001693843, z: -0.0000000037252903, w: 1}
+  m_LocalPosition: {x: 0.4419659, y: -0.1781663, z: 0.13817574}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1114784527}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &442978967
 GameObject:
   m_ObjectHideFlags: 0
@@ -6541,6 +6572,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 538109553}
   m_CullTransparentMesh: 0
+--- !u!1 &538654449
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 538654450}
+  m_Layer: 8
+  m_Name: LHCastPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &538654450
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538654449}
+  m_LocalRotation: {x: -0.19772097, y: -0.3455004, z: -0.86744505, w: 0.29845455}
+  m_LocalPosition: {x: -0.65735024, y: -0.096555054, z: 0.4855029}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1135419947}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &539917086
 GameObject:
   m_ObjectHideFlags: 0
@@ -8140,6 +8202,10 @@ MonoBehaviour:
   timeBetweenCasts: 1.03
   currentCastTimer: 0
   castPoint: {fileID: 344799302}
+  castPoints:
+  - {fileID: 344799302}
+  - {fileID: 438678830}
+  - {fileID: 538654450}
   _CharacterController: {fileID: 0}
 --- !u!114 &633367149
 MonoBehaviour:
@@ -13751,6 +13817,11 @@ Transform:
   m_Father: {fileID: 1629917778}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1114784527 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6135884457200830724, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+  m_PrefabInstance: {fileID: 1643891925}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1117519434
 GameObject:
   m_ObjectHideFlags: 0
@@ -14075,6 +14146,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1125808843}
   m_CullTransparentMesh: 0
+--- !u!4 &1135419947 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2857373400946456485, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+  m_PrefabInstance: {fileID: 1643891925}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1142225712
 GameObject:
   m_ObjectHideFlags: 0

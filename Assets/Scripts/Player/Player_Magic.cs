@@ -20,7 +20,10 @@ public class Player_Magic : MonoBehaviour
     [SerializeField] private float timeBetweenCasts = 0.25f;
     private bool isCastingMagic = false;
     [SerializeField] private float currentCastTimer;
+
     public Transform castPoint;
+    public List<Transform> castPoints = new List<Transform>();
+
     private Vector3 mouseWorldPosition;
 
     private Spell childObject;
@@ -38,6 +41,13 @@ public class Player_Magic : MonoBehaviour
         isCastingMagic = false;
         _CharacterController = GetComponent<CharacterController>();
 
+        // assign the cast point to use from the spellscriptobj
+        for (int i = 0; i < 3; i++)
+        {
+            if(castPoints[i].name == spellToCast.SpellToCast.castPoint){
+                castPoint = castPoints[i];
+            }
+        }
         castPoint.position += spellToCast.SpellToCast.SpawnOffset;
     }
 
@@ -118,7 +128,7 @@ public class Player_Magic : MonoBehaviour
 
     void FollowCastPoint(){
         if(spellToCast.SpellToCast.stickToCastPoint && childObject != null){
-            childObject.transform.position = Vector3.Lerp(childObject.transform.position, castPoint.position, Time.deltaTime *5f);
+            childObject.transform.position = Vector3.Lerp(childObject.transform.position, castPoint.position, Time.deltaTime *spellToCast.SpellToCast.stickStrength);
         }
     }
 }
