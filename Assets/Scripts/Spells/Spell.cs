@@ -37,7 +37,7 @@ public class Spell : MonoBehaviour
 
         //  apply spell affect to other 
         if (other.gameObject.CompareTag("Enemy")){
-            HealthComponent enemyHealth = other.GetComponent<HealthComponent>();
+            EnemyManager enemyHealth = other.GetComponent<EnemyManager>();
             enemyHealth.TakeDamage(SpellToCast.damage);
         }
         // Destroy spell
