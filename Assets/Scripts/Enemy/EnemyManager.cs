@@ -35,7 +35,16 @@ public class EnemyManager : MonoBehaviour
         if(distance <= lookRadius){
             agent.SetDestination(target.position);
         }
+        if(distance<= agent.stoppingDistance){
+            FaceTarget();
+        }
         
+    }
+
+    private void FaceTarget(){
+        Vector3 direction = (target.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 
     public void TakeDamage(float damage){
