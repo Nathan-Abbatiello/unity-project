@@ -15,6 +15,8 @@ public class SpellScriptableObj : ScriptableObject
   public float spellRadius = 1.5f;
   public float speed = 15f; 
 
+  public float coolDown = 1f;
+
   [Space(10)]
   [Header("Behaviour")]
   public string castPoint = "RHCastPoint";
@@ -38,6 +40,10 @@ public class SpellScriptableObj : ScriptableObject
   public float spawnDelay = 0f; 
   public float ZeroVelocityTime = 0f;
 
+  [Space(10)]
+  [Header("Display")]
+  public string description = "Item Description";
+  public Texture uiIcon;
 
 
 
