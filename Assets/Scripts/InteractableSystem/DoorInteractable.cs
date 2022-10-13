@@ -8,7 +8,7 @@ public class DoorInteractable : MonoBehaviour, IInteractable
     private bool isOpen;
 
     private void Awake(){
-        animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>(); 
     }
 
     private void ToggleDoor(){

@@ -18,7 +18,7 @@ public class Player_Magic : MonoBehaviour
     [SerializeField] private Spell spellToCast;
     private SpellScriptableObj spellProperties;
 
-    [SerializeField] private float timeBetweenCasts = 0.25f;
+    [SerializeField] private float timeBetweenCasts;
     private bool isCastingMagic = false;
     [SerializeField] private float currentCastTimer;
 
@@ -46,6 +46,7 @@ public class Player_Magic : MonoBehaviour
         // current spell scriptableObj
         spellProperties = spellToCast.SpellToCast;
         isCastingMagic = false;
+        timeBetweenCasts = spellProperties.coolDown;
        
        setCastPoint();
     }
