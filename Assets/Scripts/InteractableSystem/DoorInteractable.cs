@@ -9,8 +9,6 @@ public class DoorInteractable : MonoBehaviour, IInteractable
 
     private void Awake(){
         animator = GetComponent<Animator>();
-        animator.SetBool("isOpen", true);
-
     }
 
     private void ToggleDoor(){

@@ -1,18 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using StarterAssets;
+using UnityEngine.InputSystem;
+
 
 public class PlayerInteract : MonoBehaviour
-{
+{   
+    public PlayerControls controls;
+    void Awake(){
+        controls = new PlayerControls();
+
+    }
 
     void Update()
     {
-        // if(Input){
+        // controls = GetComponent<PlayerControls>();
+        // controls.Player.Interact.performed += PerformInteraction;
+    }
+
+    void OnEnable(){
+        controls.Enable();
+        controls.Player.Interact.performed += PerformInteraction;
+
+    }
+
+    void OnDisable(){
+        controls.Disable();
+    }
+
+    private void PerformInteraction(InputAction.CallbackContext context){
+        Debug.Log("INTERACT");
         IInteractable interactable = GetInteractableObject();
         if(interactable != null){
             interactable.Interact(transform);
         }
-    // ]
     }
 
     public IInteractable GetInteractableObject(){
