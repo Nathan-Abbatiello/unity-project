@@ -16,4 +16,4 @@ MonoBehaviour:
   lifetime: 4
   tickSpeed: 1
   movementPenalty: 0
-  effectParticles: {fileID: 0}
+  effectParticles: {fileID: 2638059524896002995, guid: ab527a8a150ba384d8416f95e3958e41, type: 3}
