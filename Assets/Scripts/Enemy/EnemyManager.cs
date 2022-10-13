@@ -22,6 +22,15 @@ public class EnemyManager : MonoBehaviour
     public Transform target;
     private NavMeshAgent agent;
 
+    [SerializeField] private Spell spellToCast;
+    public Transform castPoint;
+
+    public Transform Player;
+
+    private bool attacking;
+
+
+
     void OnDrawGizmosSelected(){
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, chaseRadius);
@@ -51,10 +60,22 @@ public class EnemyManager : MonoBehaviour
         }
 
         // attack state
-        if(distance <= attackRadius){
-            Debug.Log(enemyAttributes.name +"Attack");
+        if(distance <= attackRadius && attacking == false){
+            attacking = true;
+            StartCoroutine(SpellSpawnDelay(2f));
         }
         DisplayStats();
+
+    }
+
+    
+    IEnumerator SpellSpawnDelay(float delay){
+        yield return new WaitForSeconds(delay);
+        Vector3 aimdir = new Vector3(Player.transform.position.x, Player.transform.position.y +1, Player.position.z); 
+        Spell childObject = Instantiate(spellToCast, castPoint.position, Quaternion.LookRotation(aimdir-castPoint.position, Vector3.up) );
+        Physics.IgnoreCollision(childObject.GetComponent<Collider>(), GetComponent<Collider>());
+        attacking = false;
+
     }
 
     void DisplayStats()
