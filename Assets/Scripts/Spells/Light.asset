@@ -18,7 +18,10 @@ MonoBehaviour:
   speed: 0
   castPoint: FollowCastPoint
   stickToCastPoint: 1
+  stickStrength: 10
   destroyOnImpact: 0
-  SpawnOffset: {x: 0.2, y: 1, z: -0.7}
+  SpawnOffset: {x: 0.8, y: 0.25, z: 0}
   playerCanMove: 1
   hitEffect: {fileID: 0}
+  spawnDelay: 0
+  ZeroVelocityTime: 0

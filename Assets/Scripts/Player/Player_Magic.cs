@@ -54,7 +54,7 @@ public class Player_Magic : MonoBehaviour
     void Update()
     {
         DirectionalAim();
-        FollowCastPoint();
+        if(childObject != null) spellToCast.FollowCastPoint(castPoint, childObject);
 
         // Cast spell if cooldown finished
         if(!isCastingMagic && starterAssetsInputs.spellCast){
@@ -94,12 +94,23 @@ public class Player_Magic : MonoBehaviour
     // Instantiate Spell
     void Cast(){
         if (starterAssetsInputs.spellCast) {
-            Vector3 aimDir = (mouseWorldPosition - castPoint.position).normalized;
-            // Spawn spell
-            childObject = Instantiate(spellToCast, castPoint.position, Quaternion.LookRotation(aimDir, Vector3.up) );
-            Physics.IgnoreCollision(childObject.GetComponent<Collider>(), GetComponent<Collider>());
-            starterAssetsInputs.spellCast = false;
+            // Vector3 aimDir = (mouseWorldPosition - castPoint.position).normalized;
+            // // Spawn spell
+            // childObject = Instantiate(spellToCast, castPoint.position, Quaternion.LookRotation(aimDir, Vector3.up) );
+            // Physics.IgnoreCollision(childObject.GetComponent<Collider>(), GetComponent<Collider>());
+            // starterAssetsInputs.spellCast = false;
+            StartCoroutine(SpellSpawnDelay(spellProperties.spawnDelay));
         }
+    }
+
+    IEnumerator SpellSpawnDelay(float delay){
+        yield return new WaitForSeconds(delay);
+        Vector3 aimDir = (mouseWorldPosition - castPoint.position).normalized;
+         // Spawn spell
+        childObject = Instantiate(spellToCast, castPoint.position, Quaternion.LookRotation(aimDir, Vector3.up) );
+        Physics.IgnoreCollision(childObject.GetComponent<Collider>(), GetComponent<Collider>());
+        starterAssetsInputs.spellCast = false;
+
     }
 
     // Things that are done during casting duration
@@ -110,14 +121,7 @@ public class Player_Magic : MonoBehaviour
         currentCastTimer += Time.deltaTime;
         if(currentCastTimer > timeBetweenCasts) isCastingMagic = false;
     }
-
-    // Spell follow cast point
-    void FollowCastPoint(){
-        if(spellProperties.stickToCastPoint && childObject != null){
-            childObject.transform.position = Vector3.Lerp(childObject.transform.position, castPoint.position, Time.deltaTime *spellProperties.stickStrength);
-        }
-    }
-
+    
     // Set position for spell to spawn 
     void setCastPoint(){
          // assign the cast point to use from the spellscriptobj

@@ -32,6 +32,13 @@ public class SpellScriptableObj : ScriptableObject
 
   public Transform hitEffect;
 
+  [Space(10)]
+  [Header("Animation")]
+
+  public float spawnDelay = 0f; 
+  public float ZeroVelocityTime = 0f;
+
+
 
 
 }

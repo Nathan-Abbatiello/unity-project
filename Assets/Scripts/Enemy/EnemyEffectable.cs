@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class EnemyEffectable : MonoBehaviour, IEffectable
 {
+    EnemyManager enemyManager;
     private StatusEffectData _data;
     // Start is called before the first frame update
     void Start()
     {
+        enemyManager = GetComponent<EnemyManager>();
         
     }
 
@@ -45,6 +47,7 @@ public class EnemyEffectable : MonoBehaviour, IEffectable
         if(_data == null) return;
         if(_data.healthOverTime != 0 && _currentEffectTime > _nextTickTime + _data.tickSpeed){
             _nextTickTime += _data.tickSpeed; 
+            enemyManager.TakeDamage(_data.healthOverTime);
             // currentHealth += _data.healthOverTime
 
         } 
