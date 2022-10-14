@@ -95,11 +95,6 @@ public class Player_Magic : MonoBehaviour
     // Instantiate Spell
     void Cast(){
         if (starterAssetsInputs.spellCast) {
-            // Vector3 aimDir = (mouseWorldPosition - castPoint.position).normalized;
-            // // Spawn spell
-            // childObject = Instantiate(spellToCast, castPoint.position, Quaternion.LookRotation(aimDir, Vector3.up) );
-            // Physics.IgnoreCollision(childObject.GetComponent<Collider>(), GetComponent<Collider>());
-            // starterAssetsInputs.spellCast = false;
             StartCoroutine(SpellSpawnDelay(spellProperties.spawnDelay));
         }
     }
