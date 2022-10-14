@@ -8190,6 +8190,37 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &594548382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 594548383}
+  m_Layer: 8
+  m_Name: CastPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &594548383
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594548382}
+  m_LocalRotation: {x: -0.000000047963113, y: 0.00000001693843, z: -0.0000000037252903, w: 1}
+  m_LocalPosition: {x: 0, y: 0.4309845, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1807657319}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &595531411
 GameObject:
   m_ObjectHideFlags: 0
@@ -17519,6 +17550,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1282017287}
   m_CullTransparentMesh: 1
+--- !u!1 &1285899743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1285899744}
+  m_Layer: 8
+  m_Name: CastPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1285899744
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285899743}
+  m_LocalRotation: {x: -0.000000047963113, y: 0.00000001693843, z: -0.0000000037252903, w: 1}
+  m_LocalPosition: {x: 0, y: 0.4309845, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1364760831}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1286663468
 GameObject:
   m_ObjectHideFlags: 0
@@ -18577,6 +18639,7 @@ Transform:
   m_Children:
   - {fileID: 1807967992}
   - {fileID: 1964229548}
+  - {fileID: 1285899744}
   m_Father: {fileID: 1699803387}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18595,6 +18658,9 @@ MonoBehaviour:
   enemyAttributes: {fileID: 11400000, guid: c3670cbca5c7ea64ca5c4645735312c8, type: 2}
   healthBar: {fileID: 1546991728}
   target: {fileID: 633367155}
+  spellToCast: {fileID: 5476552538171277352, guid: 5e91fe41afc7d5142b2f0edb5e331e8e, type: 3}
+  castPoint: {fileID: 1285899744}
+  Player: {fileID: 633367155}
 --- !u!54 &1364760833
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -28506,6 +28572,7 @@ Transform:
   m_Children:
   - {fileID: 1462750819}
   - {fileID: 1861318671}
+  - {fileID: 594548383}
   m_Father: {fileID: 1699803387}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -28536,6 +28603,9 @@ MonoBehaviour:
   enemyAttributes: {fileID: 11400000, guid: c3670cbca5c7ea64ca5c4645735312c8, type: 2}
   healthBar: {fileID: 2037129611}
   target: {fileID: 633367155}
+  spellToCast: {fileID: 5476552538171277352, guid: 5e91fe41afc7d5142b2f0edb5e331e8e, type: 3}
+  castPoint: {fileID: 594548383}
+  Player: {fileID: 633367155}
 --- !u!136 &1807657322
 CapsuleCollider:
   m_ObjectHideFlags: 0

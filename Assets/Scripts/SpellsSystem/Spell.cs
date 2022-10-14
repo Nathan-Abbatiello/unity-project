@@ -56,6 +56,11 @@ public class Spell : MonoBehaviour
             EnemyManager enemyHealth = other.GetComponent<EnemyManager>();
             enemyHealth.TakeDamage(SpellToCast.damage);
         }
+
+        if (other.gameObject.CompareTag("Player")){
+            Player_Stat playerHealth = other.GetComponent<Player_Stat>();
+            playerHealth.TakeDamage(SpellToCast.damage/2);
+        }
         // Destroy spell
         if ((other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Environment")) && SpellToCast.destroyOnImpact){ 
             Transform hitvfx = Instantiate(SpellToCast.hitEffect, transform.position, Quaternion.identity);
