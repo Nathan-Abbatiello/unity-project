@@ -1,5 +1,10 @@
 public interface IHealthComponent
 {
-    // private float maxHealth();
     public void AlterHealth(float hpAmount);
+
+    public void SetMaxHealth(float maxHealth);
+
+    public float GetCurrentHealth();
+
+    public void CheckDeath();
 }

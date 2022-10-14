@@ -9035,8 +9035,7 @@ MonoBehaviour:
   healthBar: {fileID: 2019147800}
   regenTime: 0.05
   tempTime: 0
-  godMode: 0
-  canDie: 0
+  godMode: 1
   input: {fileID: 0}
 --- !u!114 &633367150 stripped
 MonoBehaviour:
@@ -18691,7 +18690,7 @@ NavMeshAgent:
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 1.5
+  m_StoppingDistance: 7
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -28658,7 +28657,7 @@ NavMeshAgent:
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 1.5
+  m_StoppingDistance: 7
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
