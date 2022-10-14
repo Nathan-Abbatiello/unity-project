@@ -30,7 +30,6 @@ public class SpellScriptableObj : ScriptableObject
   [Space(10)]
   [Header("Player Effects")]
   public bool playerCanMove = true;
-  // public status activestatus = ""
 
   public Transform hitEffect;
 

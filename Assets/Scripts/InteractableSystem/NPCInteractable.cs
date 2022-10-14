@@ -12,7 +12,7 @@ public class NPCInteractable : MonoBehaviour, IInteractable
     }
     
     public void Interact(Transform interactorTransform){
-        Debug.Log("Interact");
+        Debug.Log("Interact"+ interactorTransform.name);
         // animator.SetTrigger("Talk");
     } 
     public string GetInteractText(){

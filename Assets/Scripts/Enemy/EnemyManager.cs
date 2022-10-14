@@ -8,10 +8,6 @@ public class EnemyManager : MonoBehaviour
 {
     public EnemyAttributesScObj enemyAttributes;
 
-    // public Slider healthBar;  
-
-    // private Camera _cam;
-
     public Transform target;
     private NavMeshAgent agent;
 
@@ -25,7 +21,6 @@ public class EnemyManager : MonoBehaviour
 
     private void Awake()
     {
-        // _cam = Camera.main;
         agent = GetComponent<NavMeshAgent>();
         healthComponent = GetComponent<IHealthComponent>();
         healthComponent.SetMaxHealth(enemyAttributes.maxHealth);
@@ -48,8 +43,6 @@ public class EnemyManager : MonoBehaviour
             attacking = true;
             StartCoroutine(SpellSpawnDelay(2f));
         }
-        // DisplayStats();
-
     }
 
     
@@ -60,12 +53,6 @@ public class EnemyManager : MonoBehaviour
         Physics.IgnoreCollision(childObject.GetComponent<Collider>(), GetComponent<Collider>());
         attacking = false;
     }
-
-    // void DisplayStats()
-    // {
-    //     healthBar.value = healthComponent.GetCurrentHealth() / enemyAttributes.maxHealth;
-    //     healthBar.transform.rotation = Quaternion.LookRotation(transform.position - _cam.transform.position);
-    // }
 
     private void FaceTarget(){
         Vector3 direction = (target.position - transform.position).normalized;
