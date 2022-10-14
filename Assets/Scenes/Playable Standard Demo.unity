@@ -9036,7 +9036,6 @@ MonoBehaviour:
   regenTime: 0.05
   tempTime: 0
   godMode: 0
-  canDie: 0
   input: {fileID: 0}
 --- !u!114 &633367150 stripped
 MonoBehaviour:
@@ -18596,6 +18595,7 @@ GameObject:
   - component: {fileID: 1364760828}
   - component: {fileID: 1364760832}
   - component: {fileID: 1364760835}
+  - component: {fileID: 1364760836}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -18656,11 +18656,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyAttributes: {fileID: 11400000, guid: c3670cbca5c7ea64ca5c4645735312c8, type: 2}
-  healthBar: {fileID: 1546991728}
   target: {fileID: 633367155}
   spellToCast: {fileID: 5476552538171277352, guid: 5e91fe41afc7d5142b2f0edb5e331e8e, type: 3}
   castPoint: {fileID: 1285899744}
-  Player: {fileID: 633367155}
 --- !u!54 &1364760833
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18691,7 +18689,7 @@ NavMeshAgent:
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 1.5
+  m_StoppingDistance: 7
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -18711,6 +18709,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7217c037ca68cd84ea8cc2ea27857c4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1364760836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364760826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48a58fceaa46f3c418aab4fdc8da7e20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 1546991728}
 --- !u!1 &1372472114
 GameObject:
   m_ObjectHideFlags: 0
@@ -28551,6 +28562,7 @@ GameObject:
   - component: {fileID: 1807657322}
   - component: {fileID: 1807657321}
   - component: {fileID: 1807657320}
+  - component: {fileID: 1807657326}
   m_Layer: 0
   m_Name: Enemy (1)
   m_TagString: Enemy
@@ -28601,11 +28613,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyAttributes: {fileID: 11400000, guid: c3670cbca5c7ea64ca5c4645735312c8, type: 2}
-  healthBar: {fileID: 2037129611}
   target: {fileID: 633367155}
   spellToCast: {fileID: 5476552538171277352, guid: 5e91fe41afc7d5142b2f0edb5e331e8e, type: 3}
   castPoint: {fileID: 594548383}
-  Player: {fileID: 633367155}
 --- !u!136 &1807657322
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -28658,7 +28668,7 @@ NavMeshAgent:
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 1.5
+  m_StoppingDistance: 7
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -28666,6 +28676,19 @@ NavMeshAgent:
   m_BaseOffset: 0.72
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1807657326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807657318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48a58fceaa46f3c418aab4fdc8da7e20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 2037129611}
 --- !u!1 &1807967991
 GameObject:
   m_ObjectHideFlags: 0

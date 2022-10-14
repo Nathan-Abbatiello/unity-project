@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 50
   damage: 10
-  chaseRadius: 10
-  attackRadius: 5
+  chaseRadius: 15
+  attackRadius: 10

@@ -44,28 +44,26 @@ public class Spell : MonoBehaviour
         }
     }
 
+    private void DestroySpell(){
+        Transform hitvfx = Instantiate(SpellToCast.hitEffect, transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
+        Destroy(hitvfx.gameObject, 1f);
+    }
+
+    // Spell hits something with a collider
    private void OnTriggerEnter(Collider other){
-        Debug.Log(SpellToCast.name + " trigger");
-        var effectable = other.GetComponent<IEffectable>();
-        if(effectable != null){
-            effectable.ApplyEffect(_data);
-        } 
+        Debug.Log(SpellToCast.name + " trigger " + other.name);
 
-        //  apply spell affect to other 
-        if (other.gameObject.CompareTag("Enemy")){
-            EnemyManager enemyHealth = other.GetComponent<EnemyManager>();
-            enemyHealth.TakeDamage(SpellToCast.damage);
-        }
+        IEffectable effectable = other.GetComponent<IEffectable>();
+        IHealthComponent healthComponent = other.GetComponent<IHealthComponent>();
 
-        if (other.gameObject.CompareTag("Player")){
-            Player_Stat playerHealth = other.GetComponent<Player_Stat>();
-            playerHealth.TakeDamage(SpellToCast.damage/2);
-        }
+        //  apply spell effect to other 
+        if(effectable != null) effectable.ApplyEffect(_data);
+
+        // apply health change
+        if(healthComponent != null) healthComponent.AlterHealth(SpellToCast.damage);
+        
         // Destroy spell
-        if ((other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Environment")) && SpellToCast.destroyOnImpact){ 
-            Transform hitvfx = Instantiate(SpellToCast.hitEffect, transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
-            Destroy(hitvfx.gameObject, 5f);
-        } 
+        if ( (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Environment")) &&SpellToCast.destroyOnImpact) DestroySpell();
    } 
 }

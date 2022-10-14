@@ -11,7 +11,6 @@ public class EnemyAttributesScObj : ScriptableObject
   [Header("Attributes")]
 
   public float maxHealth = 100f;
-  public float damage = 10f;
 
   [Space(10)]
   [Header("Behaviour")]

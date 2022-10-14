@@ -17,14 +17,14 @@ public class DoorInteractable : MonoBehaviour, IInteractable
     }
     public string GetInteractText()
     {
-        return "Open/Close Door";
+        return "Door";
     }
 
     public void Interact(Transform interactorTransform)
     {
         ToggleDoor();
     }
-      public Transform GetTransform(){
+    public Transform GetTransform(){
         return transform;
     }
 

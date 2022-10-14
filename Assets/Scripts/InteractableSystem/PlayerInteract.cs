@@ -13,16 +13,9 @@ public class PlayerInteract : MonoBehaviour
 
     }
 
-    void Update()
-    {
-        // controls = GetComponent<PlayerControls>();
-        // controls.Player.Interact.performed += PerformInteraction;
-    }
-
     void OnEnable(){
         controls.Enable();
         controls.Player.Interact.performed += PerformInteraction;
-
     }
 
     void OnDisable(){
@@ -30,7 +23,6 @@ public class PlayerInteract : MonoBehaviour
     }
 
     private void PerformInteraction(InputAction.CallbackContext context){
-        Debug.Log("INTERACT");
         IInteractable interactable = GetInteractableObject();
         if(interactable != null){
             interactable.Interact(transform);
@@ -39,7 +31,7 @@ public class PlayerInteract : MonoBehaviour
 
     public IInteractable GetInteractableObject(){
         List<IInteractable> interactableList  = new List<IInteractable>();
-         float interactRange = 2f;
+        float interactRange = 2f;
         Collider[] colliderArray = Physics.OverlapSphere(transform.position, interactRange);
         foreach (Collider collider in colliderArray)
         {
@@ -61,7 +53,7 @@ public class PlayerInteract : MonoBehaviour
                 }
             }
         }
-            return closestinteractable;
+        return closestinteractable;
 
     }
 }
