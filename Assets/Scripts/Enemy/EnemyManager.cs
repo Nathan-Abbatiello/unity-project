@@ -2,19 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
 
 
 public class EnemyManager : MonoBehaviour
 {
     public EnemyAttributesScObj enemyAttributes;
 
-    public Slider healthBar;  
+    // public Slider healthBar;  
 
-    private Camera _cam;
-
-    private float chaseRadius;
-    private float attackRadius;
+    // private Camera _cam;
 
     public Transform target;
     private NavMeshAgent agent;
@@ -24,17 +20,15 @@ public class EnemyManager : MonoBehaviour
 
     private bool attacking;
 
-    private EnemyHealthComponent healthComponent;
+    private IHealthComponent healthComponent;
 
 
     private void Awake()
     {
-        _cam = Camera.main;
+        // _cam = Camera.main;
         agent = GetComponent<NavMeshAgent>();
-        healthComponent = GetComponent<EnemyHealthComponent>();
+        healthComponent = GetComponent<IHealthComponent>();
         healthComponent.SetMaxHealth(enemyAttributes.maxHealth);
-        chaseRadius = enemyAttributes.chaseRadius;
-        attackRadius = enemyAttributes.attackRadius;
     }
 
     // Update is called once per frame
@@ -42,7 +36,7 @@ public class EnemyManager : MonoBehaviour
     {
         float distance = Vector3.Distance(target.position, transform.position);
         //  chase state
-        if(distance <= chaseRadius){
+        if(distance <= enemyAttributes.chaseRadius){
             agent.SetDestination(target.position);
         }
         if(distance<= agent.stoppingDistance){
@@ -50,11 +44,11 @@ public class EnemyManager : MonoBehaviour
         }
 
         // attack state
-        if(distance <= attackRadius && attacking == false){
+        if(distance <= enemyAttributes.attackRadius && attacking == false){
             attacking = true;
             StartCoroutine(SpellSpawnDelay(2f));
         }
-        DisplayStats();
+        // DisplayStats();
 
     }
 
@@ -67,11 +61,11 @@ public class EnemyManager : MonoBehaviour
         attacking = false;
     }
 
-    void DisplayStats()
-    {
-        healthBar.value = healthComponent.GetCurrentHealth() / enemyAttributes.maxHealth;
-        healthBar.transform.rotation = Quaternion.LookRotation(transform.position - _cam.transform.position);
-    }
+    // void DisplayStats()
+    // {
+    //     healthBar.value = healthComponent.GetCurrentHealth() / enemyAttributes.maxHealth;
+    //     healthBar.transform.rotation = Quaternion.LookRotation(transform.position - _cam.transform.position);
+    // }
 
     private void FaceTarget(){
         Vector3 direction = (target.position - transform.position).normalized;
@@ -81,6 +75,6 @@ public class EnemyManager : MonoBehaviour
 
     void OnDrawGizmosSelected(){
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, chaseRadius);
+        Gizmos.DrawWireSphere(transform.position, enemyAttributes.chaseRadius);
     } 
 }
