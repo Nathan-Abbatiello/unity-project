@@ -18,7 +18,6 @@ public class EnemyEffectable : MonoBehaviour, IEffectable
     {
         enemyManager = GetComponent<EnemyManager>();
         healthComponent = GetComponent<IHealthComponent>();
-        
     }
 
     // Update is called once per frame

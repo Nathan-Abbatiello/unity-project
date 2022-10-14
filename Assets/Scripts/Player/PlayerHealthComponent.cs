@@ -48,7 +48,6 @@ public class PlayerHealthComponent : MonoBehaviour,IHealthComponent
         }
     }
 
-    //  Alter hp stat
     public void AlterHealth(float hpAmount)
     {
         currentHealth += hpAmount;
