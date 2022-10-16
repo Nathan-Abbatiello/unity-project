@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PatrolState : State
 {
-    public override State RunCurrentState()
+    public override State RunCurrentState(StateManager manager)
     {
         return this;
     }

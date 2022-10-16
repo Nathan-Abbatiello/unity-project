@@ -7,25 +7,26 @@ public class IdleState : State
     public State chaseState;
     public State patrolState;
 
-    // need to be set in parent script
-    public Transform target;
-    public EnemyAttributesScObj enemyAttributes;
-
     private bool patrol;
 
-    public override State RunCurrentState()
-    {
-        float distance = Vector3.Distance(target.position, transform.position);
-        StartCoroutine(patrolInterval(5f));
+    private StateManager _manager;
 
-        if (distance <= enemyAttributes.chaseRadius)
+
+    public override State RunCurrentState(StateManager manager)
+    {
+        _manager = manager;
+
+        float distance = Vector3.Distance(manager.target.position, transform.position);
+        // StartCoroutine(patrolInterval(5f));
+
+        if (distance <= manager.enemyAttributes.chaseRadius)
         {
             return chaseState;
         }
-        if (patrol)
-        {
-            return patrolState;
-        }
+        // if (patrol)
+        // {
+        //     return patrolState;
+        // }
         else{
             return this;
         }

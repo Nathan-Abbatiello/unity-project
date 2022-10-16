@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: 3521c6fe9b06c9e41950256f9c40dc6d, type: 2}
-  SpellToCast: {fileID: 11400000, guid: caf3d75431bcab545845976965c06328, type: 2}
+  SpellToCast: {fileID: 11400000, guid: 4f9cd91dbba9cec48ac2c18f8bf8a810, type: 2}
 --- !u!1 &4681249483044231558
 GameObject:
   m_ObjectHideFlags: 0

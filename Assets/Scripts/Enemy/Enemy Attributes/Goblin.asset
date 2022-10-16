@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: Goblin
   m_EditorClassIdentifier: 
   maxHealth: 50
-  damage: 10
-  chaseRadius: 15
+  chaseRadius: 25
   attackRadius: 10

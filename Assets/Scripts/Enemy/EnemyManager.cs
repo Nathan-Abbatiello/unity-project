@@ -20,7 +20,6 @@ public class EnemyManager : MonoBehaviour
 
     private AINavigationControl aiNav;
 
-    [SerializeField] private State currentState;
 
 
 
@@ -53,19 +52,6 @@ public class EnemyManager : MonoBehaviour
             StartCoroutine(SpellSpawnDelay(2f));
         }
     }
-
-    void RunStateMachine(){
-        State nextState = currentState?.RunCurrentState();
-
-        if(nextState != null){
-            SwitchToNextState(nextState);
-        } 
-    }
-
-    private void SwitchToNextState(State nextState){
-        currentState = nextState;
-    }
-
     
     IEnumerator SpellSpawnDelay(float delay){
         yield return new WaitForSeconds(delay);
