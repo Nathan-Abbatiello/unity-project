@@ -20,6 +20,9 @@ public class EnemyManager : MonoBehaviour
 
     private AINavigationControl aiNav;
 
+    [SerializeField] private State currentState;
+
+
 
     private void Awake()
     {
@@ -32,14 +35,12 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // RunStateMachine();   
         float distance = Vector3.Distance(target.position, transform.position);
         //  chase state
         if(distance <= enemyAttributes.chaseRadius){
             agent.SetDestination(target.position);
         }
-        // if(distance<= agent.stoppingDistance){
-        //     FaceTarget();
-        // }
         if(distance<= 7){  
             aiNav.AllowMovement(false);
         }
@@ -51,6 +52,18 @@ public class EnemyManager : MonoBehaviour
             attacking = true;
             StartCoroutine(SpellSpawnDelay(2f));
         }
+    }
+
+    void RunStateMachine(){
+        State nextState = currentState?.RunCurrentState();
+
+        if(nextState != null){
+            SwitchToNextState(nextState);
+        } 
+    }
+
+    private void SwitchToNextState(State nextState){
+        currentState = nextState;
     }
 
     

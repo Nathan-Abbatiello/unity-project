@@ -48,7 +48,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 194ccc32523fba443a218a04d08e84e6, type: 3}
+  m_Motion: {fileID: 7400000, guid: 552d5b2ef22226a4293cc4ab93061179, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -288,14 +288,6 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 194ccc32523fba443a218a04d08e84e6, type: 3}
-    m_Threshold: 0
-    m_Position: {x: 0, y: 0}
-    m_TimeScale: 1
-    m_CycleOffset: 0
-    m_DirectBlendParameter: velx
-    m_Mirror: 0
-  - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: b4743b06f536a4c48b4e1524c5df0ade, type: 2}
     m_Threshold: 0.16666667
     m_Position: {x: -1, y: 1.5}
@@ -345,7 +337,7 @@ BlendTree:
     m_Mirror: 0
   m_BlendParameter: velx
   m_BlendParameterY: vely
-  m_MinThreshold: 0
+  m_MinThreshold: 0.16666667
   m_MaxThreshold: 1
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
