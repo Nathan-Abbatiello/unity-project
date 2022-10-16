@@ -18,12 +18,15 @@ public class EnemyManager : MonoBehaviour
 
     private IHealthComponent healthComponent;
 
+    private AINavigationControl aiNav;
+
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         healthComponent = GetComponent<IHealthComponent>();
         healthComponent.SetMaxHealth(enemyAttributes.maxHealth);
+        aiNav = GetComponent<AINavigationControl>();
     }
 
     // Update is called once per frame
@@ -34,10 +37,15 @@ public class EnemyManager : MonoBehaviour
         if(distance <= enemyAttributes.chaseRadius){
             agent.SetDestination(target.position);
         }
-        if(distance<= agent.stoppingDistance){
-            FaceTarget();
+        // if(distance<= agent.stoppingDistance){
+        //     FaceTarget();
+        // }
+        if(distance<= 7){  
+            aiNav.AllowMovement(false);
         }
-
+        if(distance > 7){
+            aiNav.AllowMovement(true);
+        }
         // attack state
         if(distance <= enemyAttributes.attackRadius && attacking == false){
             attacking = true;

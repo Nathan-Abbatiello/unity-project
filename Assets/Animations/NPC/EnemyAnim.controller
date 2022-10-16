@@ -100,7 +100,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400002, guid: f45b1f4a3a1a56a4abdf6cebc25d939c, type: 3}
+  m_Motion: {fileID: 7400000, guid: 4c2df3e9732d0214b8a7743f19aa4460, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -296,7 +296,7 @@ BlendTree:
     m_DirectBlendParameter: velx
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400050, guid: bd1c2e9064da28e4fb0fe4a3f6ff4e33, type: 3}
+    m_Motion: {fileID: 7400000, guid: b4743b06f536a4c48b4e1524c5df0ade, type: 2}
     m_Threshold: 0.16666667
     m_Position: {x: -1, y: 1.5}
     m_TimeScale: 1
@@ -304,7 +304,7 @@ BlendTree:
     m_DirectBlendParameter: velx
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400048, guid: bd1c2e9064da28e4fb0fe4a3f6ff4e33, type: 3}
+    m_Motion: {fileID: 7400000, guid: 632e2c5cd3a5184499efdadbe6a4307c, type: 2}
     m_Threshold: 0.33333334
     m_Position: {x: 0, y: 1.55}
     m_TimeScale: 1
@@ -312,7 +312,7 @@ BlendTree:
     m_DirectBlendParameter: velx
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400052, guid: bd1c2e9064da28e4fb0fe4a3f6ff4e33, type: 3}
+    m_Motion: {fileID: 7400000, guid: 21aa3112331598b4f9f006d1ab476343, type: 2}
     m_Threshold: 0.5
     m_Position: {x: 1.1, y: 1.5}
     m_TimeScale: 1
@@ -320,7 +320,7 @@ BlendTree:
     m_DirectBlendParameter: velx
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400002, guid: 46d5b47e60163f148ada32ff97c7aa32, type: 3}
+    m_Motion: {fileID: 7400000, guid: 74af4229cdbe5db4d8c419a0e7e5f5d4, type: 2}
     m_Threshold: 0.6666667
     m_Position: {x: -1.7, y: 5.6}
     m_TimeScale: 1
@@ -328,7 +328,7 @@ BlendTree:
     m_DirectBlendParameter: velx
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 46d5b47e60163f148ada32ff97c7aa32, type: 3}
+    m_Motion: {fileID: 7400000, guid: 0c9c98e15132d184da55f8cdd78d9758, type: 2}
     m_Threshold: 0.8333333
     m_Position: {x: 0, y: 5.6}
     m_TimeScale: 1
@@ -336,7 +336,7 @@ BlendTree:
     m_DirectBlendParameter: velx
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400004, guid: 46d5b47e60163f148ada32ff97c7aa32, type: 3}
+    m_Motion: {fileID: 7400000, guid: 6904fb8b364819748b9478f1afd737a1, type: 2}
     m_Threshold: 1
     m_Position: {x: 1.7, y: 5.6}
     m_TimeScale: 1
@@ -371,7 +371,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400004, guid: f45b1f4a3a1a56a4abdf6cebc25d939c, type: 3}
+  m_Motion: {fileID: 7400000, guid: 548229666eed9df439feb8f0e5959a28, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

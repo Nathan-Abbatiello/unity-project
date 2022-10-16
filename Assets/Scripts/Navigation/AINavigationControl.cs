@@ -10,6 +10,12 @@ public class AINavigationControl : MonoBehaviour
     Vector3 worldDeltaPosition;
     Vector2 groundDeltaPosition;
     Vector2 velocity = Vector2.zero;
+
+    [SerializeField] private float pvely;
+    [SerializeField] private float pvelx;
+
+
+    bool allowMove;
     
     // Start is called before the first frame update
     void Start()
@@ -17,7 +23,7 @@ public class AINavigationControl : MonoBehaviour
         // anim = GetComponent<Animator>
         agent = GetComponent<NavMeshAgent>();
         agent.updatePosition = false;
-        
+        allowMove = true;
     }
 
     // Update is called once per frame
@@ -27,14 +33,31 @@ public class AINavigationControl : MonoBehaviour
         groundDeltaPosition.x = Vector3.Dot(transform.right, worldDeltaPosition);
         groundDeltaPosition.y = Vector3.Dot(transform.forward, worldDeltaPosition);
         velocity = (Time.deltaTime > 1e-5f) ? groundDeltaPosition / Time.deltaTime : velocity = Vector2.zero;
-        bool shouldMove = velocity.magnitude > 0.025f && agent.remainingDistance > agent.radius;
-        anim.SetBool("move", shouldMove);
+        if(allowMove){
+            bool shouldMove = velocity.magnitude > 0.025f && agent.remainingDistance > agent.radius;
+            anim.SetBool("move", shouldMove);
+            anim.SetFloat("vely",velocity.y);
+            pvely = velocity.y;
+        }
+        else if(!allowMove){
+            anim.SetFloat("vely",0);
+            pvely = 0;
+            anim.SetBool("move", false);
+            agent.nextPosition = transform.position;
+        }
         anim.SetFloat("velx",velocity.x);
-        anim.SetFloat("vely",velocity.y);
+
+        pvelx = velocity.x;
+        
+
         
     }
 
+    public void AllowMovement(bool setMove){
+        allowMove = setMove;
+    }
+
     void OnAnimatorMove(){
-        transform.position = agent.nextPosition;
+        if(allowMove) transform.position = agent.nextPosition;
     }
 }
