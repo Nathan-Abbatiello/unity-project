@@ -23,7 +23,22 @@ public class StateManager : MonoBehaviour
     }
     void Update()
     {
-        RunStateMachine();   
+       
+        if(healthComponent.CheckDeath()){
+            anim.SetLayerWeight(0,0);
+            anim.SetLayerWeight(1,0);
+            anim.SetLayerWeight(2,1);
+            anim.SetTrigger("dead");
+            StartCoroutine(Destroy(10f));
+        }
+        else{
+            RunStateMachine();       
+        }
+    }
+    
+    IEnumerator Destroy(float delay){
+        yield return new WaitForSeconds(delay);
+        Destroy(this.gameObject);
     }
 
     void RunStateMachine(){

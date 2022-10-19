@@ -2684,7 +2684,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8849332, y: 1}
+    m_SensorSize: {x: 1.1042595, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -19531,6 +19531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1546991728}
+  isDead: 0
 --- !u!114 &1364760837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25247,7 +25248,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 526363511}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fff0960ef4ea6e04eac66b4a7fd2189d, type: 3}
   m_Name: 
@@ -25284,6 +25285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1546991728}
+  isDead: 0
 --- !u!114 &1699150280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29093,6 +29095,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaseState: {fileID: 401772888}
   spellToCast: {fileID: 5476552538171277352, guid: 5e91fe41afc7d5142b2f0edb5e331e8e, type: 3}
+  extraRadius: 0.5
   castPoint: {fileID: 1285899744}
 --- !u!1001 &1799402884
 PrefabInstance:

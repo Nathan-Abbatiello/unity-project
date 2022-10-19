@@ -6,5 +6,5 @@ public interface IHealthComponent
 
     public float GetCurrentHealth();
 
-    public void CheckDeath();
+    public bool CheckDeath();
 }

@@ -8,6 +8,7 @@ public class AttackState : State
     private StateManager _manager; 
     private bool attacking;
     [SerializeField] private Spell spellToCast;
+    [SerializeField] private float extraRadius = 0.5f;
     public Transform castPoint;
 
     public override State RunCurrentState(StateManager manager)
@@ -15,21 +16,20 @@ public class AttackState : State
         _manager = manager;
         float distance = Vector3.Distance(_manager.target.position, transform.position);
 
-        if(distance > _manager.enemyAttributes.attackRadius){
+        if(distance > _manager.enemyAttributes.attackRadius + extraRadius){
+            _manager.anim.SetLayerWeight(0,1);
+            _manager.anim.SetLayerWeight(1,0);
             return chaseState;
         }
         else{
-            if(distance <= _manager.enemyAttributes.attackRadius && attacking == false){
+            if(distance <= _manager.enemyAttributes.attackRadius + extraRadius && attacking == false){
                 attacking = true;
                 StartCoroutine(SpellSpawnDelay(spellToCast.SpellToCast.spawnDelay));
             }
-            if(distance <= 7){  
+            if(distance <= _manager.enemyAttributes.attackRadius + extraRadius){  
                 _manager.aiNav.AllowMovement(false);
-            }
-            if(distance <= _manager.enemyAttributes.attackRadius){
                 _manager.agent.SetDestination(_manager.target.position);
             }
-
             return this;    
         }
     }
