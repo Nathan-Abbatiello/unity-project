@@ -25,6 +25,7 @@ public class StateManager : MonoBehaviour
     {
        
         if(healthComponent.CheckDeath()){
+            aiNav.AllowMovement(false);
             anim.SetLayerWeight(0,0);
             anim.SetLayerWeight(1,0);
             anim.SetLayerWeight(2,1);
