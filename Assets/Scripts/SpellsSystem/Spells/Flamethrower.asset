@@ -12,10 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3559603e89c089b469db1938fafdf0cb, type: 3}
   m_Name: Flamethrower
   m_EditorClassIdentifier: 
-  lifetime: 6.33
-  speed: 0
   damage: 10
+  lifetime: 6.33
   spellRadius: 0.12
+  speed: 0
+  coolDown: 1
+  castPoint: RHCastPoint
   stickToCastPoint: 1
+  stickStrength: 30
   destroyOnImpact: 0
-  damageOverTime: 1
+  SpawnOffset: {x: 0, y: 0, z: 0}
+  playerCanMove: 1
+  hitEffect: {fileID: 0}
+  spawnDelay: 0
+  ZeroVelocityTime: 0
+  description: Item Description
+  uiIcon: {fileID: 0}

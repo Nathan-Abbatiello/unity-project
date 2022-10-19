@@ -17,6 +17,4 @@ public class EnemyAttributesScObj : ScriptableObject
   public float chaseRadius = 10f;
   public float attackRadius = 2f;
 
-
-
 }

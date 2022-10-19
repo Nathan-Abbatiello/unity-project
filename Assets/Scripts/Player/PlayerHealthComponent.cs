@@ -24,7 +24,10 @@ public class PlayerHealthComponent : MonoBehaviour,IHealthComponent
     void Update()
     {
         CheckDeath();
-        DisplayStats();  
+        DisplayStats(); 
+        if(CheckDeath()){
+            PlayerDeath();
+        } 
     }
 
 
@@ -42,13 +45,15 @@ public class PlayerHealthComponent : MonoBehaviour,IHealthComponent
         SceneManager.LoadScene(scene.name, LoadSceneMode.Single);
     }
 
-    public void CheckDeath(){
+    public bool CheckDeath(){
         if (currentHealth <= 0 && godMode == false && canDie) {
-            StartCoroutine(PlayerDeath());
+            return true;
+        }
+        else{
+            return false;
         }
     }
 
-    //  Alter hp stat
     public void AlterHealth(float hpAmount)
     {
         currentHealth += hpAmount;

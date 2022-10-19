@@ -12,9 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3559603e89c089b469db1938fafdf0cb, type: 3}
   m_Name: Shield
   m_EditorClassIdentifier: 
-  lifetime: 14.51
-  speed: 0
   damage: 0
+  lifetime: 14.51
   spellRadius: 0
+  speed: 0
+  coolDown: 1
+  castPoint: RHCastPoint
   stickToCastPoint: 1
+  stickStrength: 30
   destroyOnImpact: 0
+  SpawnOffset: {x: 1, y: 0, z: 0}
+  playerCanMove: 1
+  hitEffect: {fileID: 0}
+  spawnDelay: 0
+  ZeroVelocityTime: 0
+  description: Item Description
+  uiIcon: {fileID: 0}

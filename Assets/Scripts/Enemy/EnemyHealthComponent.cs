@@ -10,6 +10,8 @@ public class EnemyHealthComponent : MonoBehaviour, IHealthComponent
     public Slider healthBar;  
     private Camera _cam;
 
+    public bool isDead = false;
+
     private void Awake(){
         _cam = Camera.main;
     }
@@ -34,8 +36,13 @@ public class EnemyHealthComponent : MonoBehaviour, IHealthComponent
         return currentHealth;
     }
 
-    public void CheckDeath(){
-        if(currentHealth<= 0 ) Destroy(this.gameObject);
+    public bool CheckDeath(){
+        if(currentHealth<= 0 ) {
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public void DisplayStats()

@@ -4889,6 +4889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 300b2ae656a447f44b98bec5280be574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _data: {fileID: 11400000, guid: 3521c6fe9b06c9e41950256f9c40dc6d, type: 2}
   SpellToCast: {fileID: 11400000, guid: 820daef66bfcb614aa43b8e13da49a1b, type: 2}
 --- !u!65 &8434308982003435700
 BoxCollider:
