@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: 3521c6fe9b06c9e41950256f9c40dc6d, type: 2}
-  SpellToCast: {fileID: 11400000, guid: caf3d75431bcab545845976965c06328, type: 2}
+  SpellToCast: {fileID: 11400000, guid: ffa1e5ca9eb4aa448b4e6cdd86d370db, type: 2}
 --- !u!1 &4681249483044231558
 GameObject:
   m_ObjectHideFlags: 0

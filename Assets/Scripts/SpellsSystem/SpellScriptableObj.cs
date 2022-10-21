@@ -41,6 +41,7 @@ public class SpellScriptableObj : ScriptableObject
 
   [Space(10)]
   [Header("Display")]
+  public string spellName = "new spell";
   public string description = "Item Description";
   public Texture uiIcon;
 

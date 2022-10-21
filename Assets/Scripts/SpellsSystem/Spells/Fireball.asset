@@ -26,5 +26,6 @@ MonoBehaviour:
   hitEffect: {fileID: 4749997885797464389, guid: 3afe999b2e3c4e242be0d174cd19fe2a, type: 3}
   spawnDelay: 0
   ZeroVelocityTime: 0.5
+  spellName: Fireball
   description: Item Description
   uiIcon: {fileID: 0}

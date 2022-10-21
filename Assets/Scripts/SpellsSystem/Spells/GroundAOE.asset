@@ -16,6 +16,16 @@ MonoBehaviour:
   lifetime: 2
   spellRadius: 11.1
   speed: 0
+  coolDown: 1
+  castPoint: RHCastPoint
   stickToCastPoint: 1
+  stickStrength: 0
   destroyOnImpact: 0
+  SpawnOffset: {x: 0, y: 0, z: 0}
   playerCanMove: 0
+  hitEffect: {fileID: 0}
+  spawnDelay: 0
+  ZeroVelocityTime: 0
+  spellName: GroundAOE
+  description: Item Description
+  uiIcon: {fileID: 0}

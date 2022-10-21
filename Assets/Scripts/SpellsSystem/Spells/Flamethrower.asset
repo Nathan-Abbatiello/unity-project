@@ -26,5 +26,6 @@ MonoBehaviour:
   hitEffect: {fileID: 0}
   spawnDelay: 0
   ZeroVelocityTime: 0
+  spellName: Flamethrower
   description: Item Description
   uiIcon: {fileID: 0}

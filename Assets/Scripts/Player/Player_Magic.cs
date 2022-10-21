@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 using StarterAssets;
+using TMPro;
 
 public class Player_Magic : MonoBehaviour
 {
@@ -15,10 +16,17 @@ public class Player_Magic : MonoBehaviour
     private StarterAssetsInputs starterAssetsInputs;
     private Animator animator;
     ///////////////////////////////////////////
+    
+    // Profile variables
+    private ProfileScObj activeProfile;
+    private int currentProfileIndex;
+    [SerializeField] private ProfileScObj[] profiles;
+
+    // Spell Variables
     [SerializeField] private Spell spellToCast;
     private SpellScriptableObj spellProperties;
 
-    [SerializeField] private float timeBetweenCasts;
+    private float timeBetweenCasts;
     private bool isCastingMagic = false;
     [SerializeField] private float currentCastTimer;
 
@@ -30,12 +38,20 @@ public class Player_Magic : MonoBehaviour
     private Spell childObject;
 
     public CharacterController _CharacterController;
+    public PlayerControls controls;  
 
-  
+    // UI DIsplay 
+    [SerializeField] private TextMeshProUGUI profileName;
+    [SerializeField] private TextMeshProUGUI priSpellName;
+    [SerializeField] private TextMeshProUGUI secSpellName;
 
     // Start is called before the first frame update
     void Awake()
     {
+        currentProfileIndex = 0;
+        activeProfile = profiles[currentProfileIndex];
+        // player controls
+        controls = new PlayerControls();
         //  get components
         thirdPersonController = GetComponent<ThirdPersonController>();
         starterAssetsInputs = GetComponent<StarterAssetsInputs>();
@@ -47,8 +63,8 @@ public class Player_Magic : MonoBehaviour
         spellProperties = spellToCast.SpellToCast;
         isCastingMagic = false;
         timeBetweenCasts = spellProperties.coolDown;
-       
-       setCastPoint();
+        UpdateProfile();
+        setCastPoint();
     }
 
     // Update is called once per frame
@@ -58,7 +74,7 @@ public class Player_Magic : MonoBehaviour
         if(childObject != null) spellToCast.FollowCastPoint(castPoint, childObject);
 
         // Cast spell if cooldown finished
-        if(!isCastingMagic && starterAssetsInputs.spellCast){
+        if(!isCastingMagic && starterAssetsInputs.PrimaryCast){
             currentCastTimer = 0;
             isCastingMagic = true;
             animator.Play("Magic Heal");
@@ -70,6 +86,18 @@ public class Player_Magic : MonoBehaviour
         if(isCastingMagic){
             Casting();
         }
+    }
+
+    void OnEnable(){
+        controls.Enable();
+        controls.Player.PrimaryCast.performed += PrimaryCast;
+        controls.Player.SecondaryCast.performed += SecondaryCast;
+        controls.Player.NextProfile.performed += NextProfile;
+        controls.Player.PreviousProfile.performed += PreviousProfile;
+    }
+
+    void OnDisable(){
+        controls.Disable();
     }
 
     // get direction to cast spell
@@ -94,18 +122,26 @@ public class Player_Magic : MonoBehaviour
 
     // Instantiate Spell
     void Cast(){
-        if (starterAssetsInputs.spellCast) {
-            StartCoroutine(SpellSpawnDelay(spellProperties.spawnDelay));
-        }
+        // if (starterAssetsInputs.PrimaryCast) {
+        //     StartCoroutine(SpellSpawnDelay(spellProperties.spawnDelay, spellToCast));
+        // }
+        
     }
 
-    IEnumerator SpellSpawnDelay(float delay){
+    private void PrimaryCast(InputAction.CallbackContext context){
+        StartCoroutine(SpellSpawnDelay(activeProfile.PrimarySpell.SpellToCast.spawnDelay, activeProfile.PrimarySpell));
+    }
+    private void SecondaryCast(InputAction.CallbackContext context){
+        StartCoroutine(SpellSpawnDelay(activeProfile.SecondrySpell.SpellToCast.spawnDelay, activeProfile.SecondrySpell));
+    }
+
+    IEnumerator SpellSpawnDelay(float delay, Spell spellToCast){
         yield return new WaitForSeconds(delay);
         Vector3 aimDir = (mouseWorldPosition - castPoint.position).normalized;
          // Spawn spell
         childObject = Instantiate(spellToCast, castPoint.position, Quaternion.LookRotation(aimDir, Vector3.up) );
         Physics.IgnoreCollision(childObject.GetComponent<Collider>(), GetComponent<Collider>());
-        starterAssetsInputs.spellCast = false;
+        starterAssetsInputs.PrimaryCast = false;
 
     }
 
@@ -128,5 +164,26 @@ public class Player_Magic : MonoBehaviour
             }
         }
         castPoint.position += spellProperties.SpawnOffset;
+    }
+
+    private void NextProfile(InputAction.CallbackContext context){
+        if(currentProfileIndex+1 <= profiles.Length-1){
+            currentProfileIndex += 1;
+            activeProfile = profiles[currentProfileIndex];
+            UpdateProfile();
+        }
+    }
+    private void PreviousProfile(InputAction.CallbackContext context){
+        if(currentProfileIndex-1 >= 0){
+            currentProfileIndex -= 1;
+            activeProfile = profiles[currentProfileIndex];
+            UpdateProfile();
+        }
+    }
+
+    void UpdateProfile(){
+        profileName.text = activeProfile.ProfileName;
+        priSpellName.text = activeProfile.PrimarySpell.SpellToCast.spellName;
+        secSpellName.text = activeProfile.SecondrySpell.SpellToCast.spellName;
     }
 }
