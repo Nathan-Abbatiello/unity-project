@@ -11,8 +11,12 @@ public class Spell : MonoBehaviour
     public SpellScriptableObj SpellToCast;
     private SphereCollider _collider;
     private Rigidbody _rigidbody;
-
     private float speed;
+    
+    // Cast Point 
+    public Transform castPoint;
+    public List<Transform> castPoints = new List<Transform>();
+  
 
     private void Awake(){
         _collider = GetComponent<SphereCollider>();
@@ -31,6 +35,7 @@ public class Spell : MonoBehaviour
     private void Update(){
         // applies constant forward velocity if spell has initial velocity 
         if(SpellToCast.speed > 0 ) transform.Translate(Vector3.forward * speed *Time.deltaTime);
+        FollowCastPoint(castPoint);
     }
 
     IEnumerator ZeroVelocityTime(){
@@ -38,9 +43,9 @@ public class Spell : MonoBehaviour
         speed = SpellToCast.speed;
     }
 
-    public void FollowCastPoint(Transform castPoint, Spell instance){
-        if(SpellToCast.stickToCastPoint && instance != null){
-            instance.transform.position = Vector3.Lerp(instance.transform.position, castPoint.position, Time.deltaTime *SpellToCast.stickStrength);
+    public void FollowCastPoint(Transform castPoint){
+        if(SpellToCast.stickToCastPoint){
+            transform.position = Vector3.Lerp(transform.position, castPoint.position, Time.deltaTime *SpellToCast.stickStrength);
         }
     }
 

@@ -91,7 +91,7 @@ Material:
     - _uCloudsBaseScale: 1.72
     - _uCloudsBottom: 500
     - _uCloudsBottomSoftness: 0.4
-    - _uCloudsCoverage: 0.468
+    - _uCloudsCoverage: 0.459
     - _uCloudsCoverageBias: 0.0175
     - _uCloudsDensity: 1
     - _uCloudsDetailScale: 1000

@@ -10,22 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3559603e89c089b469db1938fafdf0cb, type: 3}
-  m_Name: Light
+  m_Name: Fireball 1
   m_EditorClassIdentifier: 
-  damage: 0
-  lifetime: 10
-  spellRadius: 1.5
-  speed: 0
-  coolDown: 15
-  castPoint: FollowCastPoint
-  stickToCastPoint: 1
-  stickStrength: 4
-  destroyOnImpact: 0
-  SpawnOffset: {x: 0.8, y: 0.25, z: 0}
+  damage: -10
+  lifetime: 8.65
+  spellRadius: 0.3
+  speed: 25
+  coolDown: 1
+  castPoint: RHCastPoint
+  stickToCastPoint: 0
+  stickStrength: 0
+  destroyOnImpact: 1
+  SpawnOffset: {x: 0, y: 0, z: 0}
   playerCanMove: 1
-  hitEffect: {fileID: 0}
+  hitEffect: {fileID: 4749997885797464389, guid: 3afe999b2e3c4e242be0d174cd19fe2a, type: 3}
   spawnDelay: 0
-  ZeroVelocityTime: 0
-  spellName: Ilumenate
+  ZeroVelocityTime: 0.5
   description: Item Description
   uiIcon: {fileID: 0}
