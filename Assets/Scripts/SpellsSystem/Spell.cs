@@ -15,8 +15,7 @@ public class Spell : MonoBehaviour
     
     // Cast Point 
     public Transform castPoint;
-    public List<Transform> castPoints = new List<Transform>();
-  
+    private Transform castPointWOffset;
 
     private void Awake(){
         _collider = GetComponent<SphereCollider>();
@@ -30,12 +29,19 @@ public class Spell : MonoBehaviour
 
         speed = 0;
         StartCoroutine(ZeroVelocityTime());
+
+        if(SpellToCast.SpawnOffset.x != 0 || SpellToCast.SpawnOffset.y != 0 || SpellToCast.SpawnOffset.z != 0){
+            Debug.Log("offset detected");
+            castPointWOffset = new GameObject(SpellToCast.spellName+" castoffset").transform;
+            castPointWOffset.transform.parent = castPoint.transform;
+            castPointWOffset.position = castPoint.position + SpellToCast.SpawnOffset;
+        }
     }
 
     private void Update(){
         // applies constant forward velocity if spell has initial velocity 
         if(SpellToCast.speed > 0 ) transform.Translate(Vector3.forward * speed *Time.deltaTime);
-        FollowCastPoint(castPoint);
+        FollowCastPoint(castPointWOffset);
     }
 
     IEnumerator ZeroVelocityTime(){
@@ -44,6 +50,7 @@ public class Spell : MonoBehaviour
     }
 
     public void FollowCastPoint(Transform castPoint){
+        //  move the transform of the castpoint relative to the player, as otherwise the spawnoffset is added to negative numbers
         if(SpellToCast.stickToCastPoint){
             transform.position = Vector3.Lerp(transform.position, castPoint.position, Time.deltaTime *SpellToCast.stickStrength);
         }
@@ -71,4 +78,10 @@ public class Spell : MonoBehaviour
         // Destroy spell
         if ( (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Environment")) &&SpellToCast.destroyOnImpact) DestroySpell();
    } 
+
+   void OnDestroy(){
+    if(SpellToCast.SpawnOffset.x != 0 || SpellToCast.SpawnOffset.y != 0 || SpellToCast.SpawnOffset.z != 0){
+        Destroy(castPointWOffset.gameObject);
+    }
+   }
 }

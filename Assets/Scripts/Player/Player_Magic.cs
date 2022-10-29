@@ -14,7 +14,6 @@ public class Player_Magic : MonoBehaviour
     [SerializeField] private Transform debugTransform;
 
     private ThirdPersonController thirdPersonController;
-    private StarterAssetsInputs starterAssetsInputs;
     private Animator animator;
     ///////////////////////////////////////////
     
@@ -30,13 +29,13 @@ public class Player_Magic : MonoBehaviour
     private bool isCastingMagic = false;
     [SerializeField] private float currentCastTimer;
 
-    public Transform castPoint;
+    // public Transform castPoint;
     public List<Transform> castPoints = new List<Transform>();
 
     private Vector3 mouseWorldPosition;
 
     private Spell childObject;
-    private List <Spell> activeSpells = new List<Spell>();
+
     private Spell activeSpell;
     
     // cooldowns
@@ -60,7 +59,6 @@ public class Player_Magic : MonoBehaviour
         controls = new PlayerControls();
         //  get components
         thirdPersonController = GetComponent<ThirdPersonController>();
-        starterAssetsInputs = GetComponent<StarterAssetsInputs>();
         animator = GetComponent<Animator>();
         _CharacterController = GetComponent<CharacterController>();
         
@@ -74,7 +72,6 @@ public class Player_Magic : MonoBehaviour
         // current spell scriptableObj
         spellProperties = spellToCast.SpellToCast;
         isCastingMagic = false;
-        setCastPoint();
 
         // Initial Cooldown timers setup
         priSpellCooldown.fillAmount = 0f;
@@ -137,7 +134,6 @@ public class Player_Magic : MonoBehaviour
     void Cast(Spell currentSpell){
         // if(!isCastingMagic){
        
-        // setCastPoint();
         activeSpell = currentSpell;
         currentCastTimer = 0;
         isCastingMagic = true;
@@ -162,13 +158,18 @@ public class Player_Magic : MonoBehaviour
 
     IEnumerator SpellSpawnDelay(float delay, Spell spellToCast){
         yield return new WaitForSeconds(delay);
-        Vector3 aimDir = (mouseWorldPosition - castPoint.position).normalized;
+        // set cast point for spell
+        spellToCast.castPoint =  setCastPoint(spellToCast);
+
+        // set aim direction
+        Vector3 aimDir = (mouseWorldPosition - spellToCast.castPoint.position).normalized;
+        // Vector3 aimDir = (mouseWorldPosition - (spellToCast.castPoint.position-spellToCast.SpellToCast.SpawnOffset)).normalized;
+
+
          // Spawn spell
-        childObject = Instantiate(spellToCast, castPoint.position, Quaternion.LookRotation(aimDir, Vector3.up) );
-        childObject.castPoint = castPoint;
-        activeSpells.Add(childObject);
+        childObject = Instantiate(spellToCast, spellToCast.castPoint.position, Quaternion.LookRotation(aimDir, Vector3.up) );
+        // childObject = Instantiate(spellToCast, spellToCast.castPoint.position, Quaternion.LookRotation(aimDir, Vector3.up) );
         Physics.IgnoreCollision(childObject.GetComponent<Collider>(), GetComponent<Collider>());
-        starterAssetsInputs.PrimaryCast = false;
     }
 
     // Things that are done during casting duration
@@ -179,18 +180,16 @@ public class Player_Magic : MonoBehaviour
         currentCastTimer += Time.deltaTime;
         if(currentCastTimer > currentSpell.SpellToCast.coolDown) isCastingMagic = false;
     }
-    
-    // Set position for spell to spawn 
-    void setCastPoint(){
-         // assign the cast point to use from the spellscriptobj
-        for (int i = 0; i < 3; i++)
+
+    // Return position for spell to spawn from the spellscriptobj
+    private Transform setCastPoint(Spell currSpell){
+        for (int i = 0; i < castPoints.Count; i++)
         {
-            if(castPoints[i].name == activeProfile.PrimarySpell.SpellToCast.castPoint){
-                castPoint = castPoints[i];
-                castPoint.position += activeProfile.PrimarySpell.SpellToCast.SpawnOffset;
+            if(castPoints[i].name == currSpell.SpellToCast.castPoint){
+                return castPoints[i].transform;
             }
         }
-        
+        return null;
     }
 
     private void NextProfile(InputAction.CallbackContext context){
@@ -225,6 +224,7 @@ public class Player_Magic : MonoBehaviour
         if(secCooldown.IsFinished()) secSpellCooldown.fillAmount = 0f;
     }
 
+    // GUI text modifiers
     public IEnumerator FadeTextToFullAlpha(float t, TextMeshProUGUI i)
     {
         i.color = new Color(i.color.r, i.color.g, i.color.b, 0);
