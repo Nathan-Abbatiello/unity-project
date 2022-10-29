@@ -10,6 +10,9 @@ public class ProfileScObj : ScriptableObject
   // A scriptable object that contains spells
   [Header("Spells in Profile")]
   public string ProfileName = "NewProfile";
-  public Spell PrimarySpell;
-  public Spell SecondrySpell;
+  public Spell profileSpell1;
+  public Spell profileSpell2;
+  public Spell profileSpell3;
+  public Spell profileSpell4;
+
 }

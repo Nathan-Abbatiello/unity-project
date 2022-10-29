@@ -116,6 +116,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cast3"",
+                    ""type"": ""Button"",
+                    ""id"": ""73a81e80-0933-4c93-acb8-575d340230bd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cast4"",
+                    ""type"": ""Button"",
+                    ""id"": ""9aa9f7b8-9f92-46f0-af5e-aa84ac40f0fa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -426,6 +444,50 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""PreviousProfile"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""46c34b5e-9166-4664-bab5-4ad55fd394c6"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Cast3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2f6f5a40-74fa-4c79-a033-ec5c2f38bd13"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Cast3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2d2f9aeb-f801-42e0-b1b9-22a9a4173a54"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Cast4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3e0a3442-b869-4330-b81b-2ce11e8eb59d"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Cast4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -531,6 +593,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_SecondaryCast = m_Player.FindAction("SecondaryCast", throwIfNotFound: true);
         m_Player_NextProfile = m_Player.FindAction("NextProfile", throwIfNotFound: true);
         m_Player_PreviousProfile = m_Player.FindAction("PreviousProfile", throwIfNotFound: true);
+        m_Player_Cast3 = m_Player.FindAction("Cast3", throwIfNotFound: true);
+        m_Player_Cast4 = m_Player.FindAction("Cast4", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_CloseMenu = m_UI.FindAction("CloseMenu", throwIfNotFound: true);
@@ -603,6 +667,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SecondaryCast;
     private readonly InputAction m_Player_NextProfile;
     private readonly InputAction m_Player_PreviousProfile;
+    private readonly InputAction m_Player_Cast3;
+    private readonly InputAction m_Player_Cast4;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -617,6 +683,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @SecondaryCast => m_Wrapper.m_Player_SecondaryCast;
         public InputAction @NextProfile => m_Wrapper.m_Player_NextProfile;
         public InputAction @PreviousProfile => m_Wrapper.m_Player_PreviousProfile;
+        public InputAction @Cast3 => m_Wrapper.m_Player_Cast3;
+        public InputAction @Cast4 => m_Wrapper.m_Player_Cast4;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -656,6 +724,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @PreviousProfile.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPreviousProfile;
                 @PreviousProfile.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPreviousProfile;
                 @PreviousProfile.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPreviousProfile;
+                @Cast3.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCast3;
+                @Cast3.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCast3;
+                @Cast3.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCast3;
+                @Cast4.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCast4;
+                @Cast4.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCast4;
+                @Cast4.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCast4;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -690,6 +764,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @PreviousProfile.started += instance.OnPreviousProfile;
                 @PreviousProfile.performed += instance.OnPreviousProfile;
                 @PreviousProfile.canceled += instance.OnPreviousProfile;
+                @Cast3.started += instance.OnCast3;
+                @Cast3.performed += instance.OnCast3;
+                @Cast3.canceled += instance.OnCast3;
+                @Cast4.started += instance.OnCast4;
+                @Cast4.performed += instance.OnCast4;
+                @Cast4.canceled += instance.OnCast4;
             }
         }
     }
@@ -775,6 +855,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnSecondaryCast(InputAction.CallbackContext context);
         void OnNextProfile(InputAction.CallbackContext context);
         void OnPreviousProfile(InputAction.CallbackContext context);
+        void OnCast3(InputAction.CallbackContext context);
+        void OnCast4(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

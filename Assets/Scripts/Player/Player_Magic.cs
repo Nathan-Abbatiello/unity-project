@@ -39,7 +39,7 @@ public class Player_Magic : MonoBehaviour
     private Spell activeSpell;
     
     // cooldowns
-    CooldownTimer priCooldown, secCooldown;
+    CooldownTimer priCooldown, secCooldown, cast3Timer, cast4Timer;
 
     public CharacterController _CharacterController;
     public PlayerControls controls;  
@@ -50,6 +50,9 @@ public class Player_Magic : MonoBehaviour
     [SerializeField] private Image priSpellCooldown;
     [SerializeField] private TextMeshProUGUI secSpellName;
     [SerializeField] private Image secSpellCooldown;
+    [SerializeField] private Image cast3Cooldown;
+    [SerializeField] private Image cast4Cooldown;
+
 
 
     // Start is called before the first frame update
@@ -78,6 +81,11 @@ public class Player_Magic : MonoBehaviour
         priCooldown = new CooldownTimer();
         secSpellCooldown.fillAmount = 0f;
         secCooldown = new CooldownTimer();
+        cast3Cooldown.fillAmount = 0f;
+        cast3Timer = new CooldownTimer();
+        cast4Cooldown.fillAmount = 0f;
+        cast4Timer = new CooldownTimer();
+
     }
 
     void Update()
@@ -85,6 +93,8 @@ public class Player_Magic : MonoBehaviour
         // Run spell cooldown timers  
         priCooldown.RunTimer();
         secCooldown.RunTimer();
+        cast3Timer.RunTimer();
+        cast4Timer.RunTimer();
         // display coolsdowns and other stats
         DisplayMagicStats();
         
@@ -102,6 +112,8 @@ public class Player_Magic : MonoBehaviour
         controls.Enable();
         controls.Player.PrimaryCast.performed += PrimaryCast;
         controls.Player.SecondaryCast.performed += SecondaryCast;
+        controls.Player.Cast3.performed += Cast3Input;
+        controls.Player.Cast4.performed += Cast4Input;
         controls.Player.NextProfile.performed += NextProfile;
         controls.Player.PreviousProfile.performed += PreviousProfile;
     }
@@ -145,14 +157,28 @@ public class Player_Magic : MonoBehaviour
 
     private void PrimaryCast(InputAction.CallbackContext context){     
         if(priCooldown.IsFinished()){
-            Cast(activeProfile.PrimarySpell);
-            priCooldown.ResetTimer(activeProfile.PrimarySpell.SpellToCast.coolDown);
+            Cast(activeProfile.profileSpell1);
+            priCooldown.ResetTimer(activeProfile.profileSpell1.SpellToCast.coolDown);
         }   
     }
     private void SecondaryCast(InputAction.CallbackContext context){
         if(secCooldown.IsFinished()){
-            Cast(activeProfile.SecondrySpell);
-            secCooldown.ResetTimer(activeProfile.SecondrySpell.SpellToCast.coolDown);
+            Cast(activeProfile.profileSpell2);
+            secCooldown.ResetTimer(activeProfile.profileSpell2.SpellToCast.coolDown);
+        }
+    }
+
+    private void Cast3Input(InputAction.CallbackContext context){
+        if(cast3Timer.IsFinished()){
+            Cast(activeProfile.profileSpell3);
+            cast3Timer.ResetTimer(activeProfile.profileSpell3.SpellToCast.coolDown);
+        }
+    }
+
+    private void Cast4Input(InputAction.CallbackContext context){
+        if(cast4Timer.IsFinished()){
+            Cast(activeProfile.profileSpell4);
+            cast4Timer.ResetTimer(activeProfile.profileSpell4.SpellToCast.coolDown);
         }
     }
 
@@ -165,10 +191,8 @@ public class Player_Magic : MonoBehaviour
         Vector3 aimDir = (mouseWorldPosition - spellToCast.castPoint.position).normalized;
         // Vector3 aimDir = (mouseWorldPosition - (spellToCast.castPoint.position-spellToCast.SpellToCast.SpawnOffset)).normalized;
 
-
          // Spawn spell
         childObject = Instantiate(spellToCast, spellToCast.castPoint.position, Quaternion.LookRotation(aimDir, Vector3.up) );
-        // childObject = Instantiate(spellToCast, spellToCast.castPoint.position, Quaternion.LookRotation(aimDir, Vector3.up) );
         Physics.IgnoreCollision(childObject.GetComponent<Collider>(), GetComponent<Collider>());
     }
 
@@ -213,15 +237,22 @@ public class Player_Magic : MonoBehaviour
         profileName.color = new Color(profileName.color.r, profileName.color.g, profileName.color.b, 1);
         StartCoroutine(FadeTextToZeroAlpha(3f, profileName));
 
-        priSpellName.text = activeProfile.PrimarySpell.SpellToCast.spellName;
-        secSpellName.text = activeProfile.SecondrySpell.SpellToCast.spellName;
+        priSpellName.text = activeProfile.profileSpell1.SpellToCast.spellName;
+        secSpellName.text = activeProfile.profileSpell2.SpellToCast.spellName;
     }
 
     private void DisplayMagicStats(){
         if(!priCooldown.IsFinished()) priSpellCooldown.fillAmount = 1 - (priCooldown._currentTime / priCooldown._duration);
         if(priCooldown.IsFinished()) priSpellCooldown.fillAmount = 0f;
+
         if(!secCooldown.IsFinished()) secSpellCooldown.fillAmount = 1 - (secCooldown._currentTime / secCooldown._duration);
         if(secCooldown.IsFinished()) secSpellCooldown.fillAmount = 0f;
+
+        if(!cast3Timer.IsFinished()) cast3Cooldown.fillAmount = 1 - (cast3Timer._currentTime / cast3Timer._duration);
+        if(cast3Timer.IsFinished()) cast3Cooldown.fillAmount = 0f;
+
+        if(!cast4Timer.IsFinished()) cast4Cooldown.fillAmount = 1 - (cast4Timer._currentTime / cast4Timer._duration);
+        if(cast4Timer.IsFinished()) cast4Cooldown.fillAmount = 0f;
     }
 
     // GUI text modifiers

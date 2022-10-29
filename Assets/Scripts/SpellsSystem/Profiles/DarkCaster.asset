@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: DarkCaster
   m_EditorClassIdentifier: 
   ProfileName: Dark Caster
-  PrimarySpell: {fileID: 5476552538171277352, guid: 08cf9ea315a944743b74f9a34bbdd85d, type: 3}
-  SecondrySpell: {fileID: 5476552538171277352, guid: 283bc771750becc4e97330391656cb04, type: 3}
+  profileSpell1: {fileID: 5476552538171277352, guid: 08cf9ea315a944743b74f9a34bbdd85d, type: 3}
+  profileSpell2: {fileID: 932556645471904887, guid: 1f70322dfe929f541ac1d0940343286c, type: 3}
+  profileSpell3: {fileID: 5476552538171277352, guid: 283bc771750becc4e97330391656cb04, type: 3}
+  profileSpell4: {fileID: 5476552538171277352, guid: af426839682b13b4e9f67145490f7257, type: 3}

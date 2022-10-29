@@ -10149,7 +10149,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b75817fa89294774f8d988d490de96ea, type: 2}
   spellToCast: {fileID: 5476552538171277352, guid: 08cf9ea315a944743b74f9a34bbdd85d, type: 3}
   currentCastTimer: 0
-  castPoint: {fileID: 344799302}
   castPoints:
   - {fileID: 344799302}
   - {fileID: 438678830}
@@ -10160,6 +10159,8 @@ MonoBehaviour:
   priSpellCooldown: {fileID: 1260293862}
   secSpellName: {fileID: 1622954946}
   secSpellCooldown: {fileID: 303722792}
+  cast3Cooldown: {fileID: 947590752}
+  cast4Cooldown: {fileID: 1326436073}
 --- !u!114 &633367149
 MonoBehaviour:
   m_ObjectHideFlags: 0
