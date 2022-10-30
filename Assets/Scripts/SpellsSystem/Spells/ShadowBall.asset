@@ -17,6 +17,7 @@ MonoBehaviour:
   spellRadius: 0.3
   speed: 25
   coolDown: 1
+  castingDuration: 0.5
   castPoint: RHCastPoint
   stickToCastPoint: 0
   stickStrength: 0

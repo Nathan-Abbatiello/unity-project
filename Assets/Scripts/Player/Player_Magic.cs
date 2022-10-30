@@ -26,7 +26,7 @@ public class Player_Magic : MonoBehaviour
     [SerializeField] private Spell spellToCast;
     private SpellScriptableObj spellProperties;
 
-    private bool isCastingMagic = false;
+    private bool isCasting = false;
     [SerializeField] private float currentCastTimer;
 
     // public Transform castPoint;
@@ -39,7 +39,7 @@ public class Player_Magic : MonoBehaviour
     private Spell activeSpell;
     
     // cooldowns
-    CooldownTimer priCooldown, secCooldown, cast3Timer, cast4Timer;
+    CooldownTimer priCooldown, secCooldown, cast3Timer, cast4Timer, castingTimer;
 
     public CharacterController _CharacterController;
     public PlayerControls controls;  
@@ -74,9 +74,10 @@ public class Player_Magic : MonoBehaviour
 
         // current spell scriptableObj
         spellProperties = spellToCast.SpellToCast;
-        isCastingMagic = false;
+        isCasting = false;
 
         // Initial Cooldown timers setup
+        castingTimer = new CooldownTimer();
         priSpellCooldown.fillAmount = 0f;
         priCooldown = new CooldownTimer();
         secSpellCooldown.fillAmount = 0f;
@@ -91,6 +92,7 @@ public class Player_Magic : MonoBehaviour
     void Update()
     {
         // Run spell cooldown timers  
+        castingTimer.RunTimer();
         priCooldown.RunTimer();
         secCooldown.RunTimer();
         cast3Timer.RunTimer();
@@ -101,11 +103,16 @@ public class Player_Magic : MonoBehaviour
         // Character aiming
         DirectionalAim();  
 
-        // currently casting    
-        if(isCastingMagic){
-            Casting(activeSpell);
+        // currently casting   
+        if(!castingTimer.IsFinished()) {
+            isCasting = true;
+            Casting(activeSpell); 
         }
-         
+        //  finished casting
+        if(castingTimer.IsFinished()){
+            isCasting = false;
+            _CharacterController.enabled = true;
+        } 
     }
 
     void OnEnable(){
@@ -144,39 +151,38 @@ public class Player_Magic : MonoBehaviour
 
     // Instantiate Spell
     void Cast(Spell currentSpell){
-        // if(!isCastingMagic){
-       
-        activeSpell = currentSpell;
-        currentCastTimer = 0;
-        isCastingMagic = true;
-        animator.Play("Magic Heal");
-        StartCoroutine(SpellSpawnDelay(currentSpell.SpellToCast.spawnDelay, currentSpell));
-        _CharacterController.enabled = true;
-        // }
+        if(!isCasting){
+            isCasting = true;
+            castingTimer.ResetTimer(currentSpell.SpellToCast.castingDuration);
+            activeSpell = currentSpell;
+            animator.Play("Magic Heal");
+            StartCoroutine(SpellSpawnDelay(currentSpell.SpellToCast.spawnDelay, currentSpell));
+            _CharacterController.enabled = true;
+        }
     }
 
     private void PrimaryCast(InputAction.CallbackContext context){     
-        if(priCooldown.IsFinished()){
+        if(priCooldown.IsFinished() && !isCasting){
             Cast(activeProfile.profileSpell1);
             priCooldown.ResetTimer(activeProfile.profileSpell1.SpellToCast.coolDown);
         }   
     }
     private void SecondaryCast(InputAction.CallbackContext context){
-        if(secCooldown.IsFinished()){
+        if(secCooldown.IsFinished() && !isCasting){
             Cast(activeProfile.profileSpell2);
             secCooldown.ResetTimer(activeProfile.profileSpell2.SpellToCast.coolDown);
         }
     }
 
     private void Cast3Input(InputAction.CallbackContext context){
-        if(cast3Timer.IsFinished()){
+        if(cast3Timer.IsFinished() && !isCasting){
             Cast(activeProfile.profileSpell3);
             cast3Timer.ResetTimer(activeProfile.profileSpell3.SpellToCast.coolDown);
         }
     }
 
     private void Cast4Input(InputAction.CallbackContext context){
-        if(cast4Timer.IsFinished()){
+        if(cast4Timer.IsFinished() && !isCasting){
             Cast(activeProfile.profileSpell4);
             cast4Timer.ResetTimer(activeProfile.profileSpell4.SpellToCast.coolDown);
         }
@@ -200,9 +206,6 @@ public class Player_Magic : MonoBehaviour
     void Casting(Spell currentSpell){
         // Disable player movement
         if(!currentSpell.SpellToCast.playerCanMove) _CharacterController.enabled = false;
-        // Increment cast timer
-        currentCastTimer += Time.deltaTime;
-        if(currentCastTimer > currentSpell.SpellToCast.coolDown) isCastingMagic = false;
     }
 
     // Return position for spell to spawn from the spellscriptobj

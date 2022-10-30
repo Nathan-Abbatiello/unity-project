@@ -16,6 +16,7 @@ public class SpellScriptableObj : ScriptableObject
   public float speed = 15f; 
 
   public float coolDown = 1f;
+  public float castingDuration = 0.5f;
 
   [Space(10)]
   [Header("Behaviour")]

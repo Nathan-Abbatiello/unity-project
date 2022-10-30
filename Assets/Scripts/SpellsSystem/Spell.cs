@@ -34,7 +34,7 @@ public class Spell : MonoBehaviour
             Debug.Log("offset detected");
             castPointWOffset = new GameObject(SpellToCast.spellName+" castoffset").transform;
             castPointWOffset.transform.parent = castPoint.transform;
-            castPointWOffset.position = castPoint.position + SpellToCast.SpawnOffset;
+            castPointWOffset.position = castPoint.position + SpellToCast.SpawnOffset; /////////////// cast roation/ offset direction dependent error
         }
     }
 
