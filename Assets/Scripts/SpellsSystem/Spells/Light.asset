@@ -13,15 +13,20 @@ MonoBehaviour:
   m_Name: Light
   m_EditorClassIdentifier: 
   damage: 0
-  lifetime: 20
+  lifetime: 10
   spellRadius: 1.5
   speed: 0
+  coolDown: 15
+  castingDuration: 1
   castPoint: FollowCastPoint
   stickToCastPoint: 1
-  stickStrength: 10
+  stickStrength: 4
   destroyOnImpact: 0
   SpawnOffset: {x: 0.8, y: 0.25, z: 0}
   playerCanMove: 1
   hitEffect: {fileID: 0}
   spawnDelay: 0
   ZeroVelocityTime: 0
+  spellName: Ilumenate
+  description: Item Description
+  uiIcon: {fileID: 0}

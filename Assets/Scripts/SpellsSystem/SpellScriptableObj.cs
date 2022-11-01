@@ -16,6 +16,7 @@ public class SpellScriptableObj : ScriptableObject
   public float speed = 15f; 
 
   public float coolDown = 1f;
+  public float castingDuration = 0.5f;
 
   [Space(10)]
   [Header("Behaviour")]
@@ -41,6 +42,7 @@ public class SpellScriptableObj : ScriptableObject
 
   [Space(10)]
   [Header("Display")]
+  public string spellName = "new spell";
   public string description = "Item Description";
   public Texture uiIcon;
 

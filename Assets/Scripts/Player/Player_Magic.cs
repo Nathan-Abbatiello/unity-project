@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 using StarterAssets;
+using TMPro;
+using UnityEngine.UI;
 
 public class Player_Magic : MonoBehaviour
 {
@@ -12,64 +14,119 @@ public class Player_Magic : MonoBehaviour
     [SerializeField] private Transform debugTransform;
 
     private ThirdPersonController thirdPersonController;
-    private StarterAssetsInputs starterAssetsInputs;
     private Animator animator;
     ///////////////////////////////////////////
+    
+    // Profile variables
+    private ProfileScObj activeProfile;
+    private int currentProfileIndex;
+    [SerializeField] private ProfileScObj[] profiles;
+
+    // Spell Variables
     [SerializeField] private Spell spellToCast;
     private SpellScriptableObj spellProperties;
 
-    [SerializeField] private float timeBetweenCasts;
-    private bool isCastingMagic = false;
+    private bool isCasting = false;
     [SerializeField] private float currentCastTimer;
 
-    public Transform castPoint;
+    // public Transform castPoint;
     public List<Transform> castPoints = new List<Transform>();
 
     private Vector3 mouseWorldPosition;
 
     private Spell childObject;
 
-    public CharacterController _CharacterController;
+    private Spell activeSpell;
+    
+    // cooldowns
+    CooldownTimer priCooldown, secCooldown, cast3Timer, cast4Timer, castingTimer;
 
-  
+    public CharacterController _CharacterController;
+    public PlayerControls controls;  
+
+    // UI DIsplay 
+    [SerializeField] private TextMeshProUGUI profileName;
+    [SerializeField] private TextMeshProUGUI priSpellName;
+    [SerializeField] private Image priSpellCooldown;
+    [SerializeField] private TextMeshProUGUI secSpellName;
+    [SerializeField] private Image secSpellCooldown;
+    [SerializeField] private Image cast3Cooldown;
+    [SerializeField] private Image cast4Cooldown;
+
+
 
     // Start is called before the first frame update
     void Awake()
     {
+        // player controls
+        controls = new PlayerControls();
         //  get components
         thirdPersonController = GetComponent<ThirdPersonController>();
-        starterAssetsInputs = GetComponent<StarterAssetsInputs>();
         animator = GetComponent<Animator>();
         _CharacterController = GetComponent<CharacterController>();
         
         aimSensitivity = 1f;
+        
+        // Spell Profile vars
+        currentProfileIndex = 0;
+        activeProfile = profiles[currentProfileIndex];
+        UpdateProfile();
+
         // current spell scriptableObj
         spellProperties = spellToCast.SpellToCast;
-        isCastingMagic = false;
-        timeBetweenCasts = spellProperties.coolDown;
-       
-       setCastPoint();
+        isCasting = false;
+
+        // Initial Cooldown timers setup
+        castingTimer = new CooldownTimer();
+        priSpellCooldown.fillAmount = 0f;
+        priCooldown = new CooldownTimer();
+        secSpellCooldown.fillAmount = 0f;
+        secCooldown = new CooldownTimer();
+        cast3Cooldown.fillAmount = 0f;
+        cast3Timer = new CooldownTimer();
+        cast4Cooldown.fillAmount = 0f;
+        cast4Timer = new CooldownTimer();
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        DirectionalAim();
-        if(childObject != null) spellToCast.FollowCastPoint(castPoint, childObject);
+        // Run spell cooldown timers  
+        castingTimer.RunTimer();
+        priCooldown.RunTimer();
+        secCooldown.RunTimer();
+        cast3Timer.RunTimer();
+        cast4Timer.RunTimer();
+        // display coolsdowns and other stats
+        DisplayMagicStats();
+        
+        // Character aiming
+        DirectionalAim();  
 
-        // Cast spell if cooldown finished
-        if(!isCastingMagic && starterAssetsInputs.spellCast){
-            currentCastTimer = 0;
-            isCastingMagic = true;
-            animator.Play("Magic Heal");
-            Cast();
+        // currently casting   
+        if(!castingTimer.IsFinished()) {
+            isCasting = true;
+            Casting(activeSpell); 
+        }
+        //  finished casting
+        if(castingTimer.IsFinished()){
+            isCasting = false;
             _CharacterController.enabled = true;
-        }
-      
-        // currently casting    
-        if(isCastingMagic){
-            Casting();
-        }
+        } 
+    }
+
+    void OnEnable(){
+        controls.Enable();
+        controls.Player.PrimaryCast.performed += PrimaryCast;
+        controls.Player.SecondaryCast.performed += SecondaryCast;
+        controls.Player.Cast3.performed += Cast3Input;
+        controls.Player.Cast4.performed += Cast4Input;
+        controls.Player.NextProfile.performed += NextProfile;
+        controls.Player.PreviousProfile.performed += PreviousProfile;
+    }
+
+    void OnDisable(){
+        controls.Disable();
     }
 
     // get direction to cast spell
@@ -93,40 +150,132 @@ public class Player_Magic : MonoBehaviour
     }
 
     // Instantiate Spell
-    void Cast(){
-        if (starterAssetsInputs.spellCast) {
-            StartCoroutine(SpellSpawnDelay(spellProperties.spawnDelay));
+    void Cast(Spell currentSpell){
+        if(!isCasting){
+            isCasting = true;
+            castingTimer.ResetTimer(currentSpell.SpellToCast.castingDuration);
+            activeSpell = currentSpell;
+            animator.Play("Magic Heal");
+            StartCoroutine(SpellSpawnDelay(currentSpell.SpellToCast.spawnDelay, currentSpell));
+            _CharacterController.enabled = true;
         }
     }
 
-    IEnumerator SpellSpawnDelay(float delay){
-        yield return new WaitForSeconds(delay);
-        Vector3 aimDir = (mouseWorldPosition - castPoint.position).normalized;
-         // Spawn spell
-        childObject = Instantiate(spellToCast, castPoint.position, Quaternion.LookRotation(aimDir, Vector3.up) );
-        Physics.IgnoreCollision(childObject.GetComponent<Collider>(), GetComponent<Collider>());
-        starterAssetsInputs.spellCast = false;
+    private void PrimaryCast(InputAction.CallbackContext context){     
+        if(priCooldown.IsFinished() && !isCasting){
+            Cast(activeProfile.profileSpell1);
+            priCooldown.ResetTimer(activeProfile.profileSpell1.SpellToCast.coolDown);
+        }   
+    }
+    private void SecondaryCast(InputAction.CallbackContext context){
+        if(secCooldown.IsFinished() && !isCasting){
+            Cast(activeProfile.profileSpell2);
+            secCooldown.ResetTimer(activeProfile.profileSpell2.SpellToCast.coolDown);
+        }
+    }
 
+    private void Cast3Input(InputAction.CallbackContext context){
+        if(cast3Timer.IsFinished() && !isCasting){
+            Cast(activeProfile.profileSpell3);
+            cast3Timer.ResetTimer(activeProfile.profileSpell3.SpellToCast.coolDown);
+        }
+    }
+
+    private void Cast4Input(InputAction.CallbackContext context){
+        if(cast4Timer.IsFinished() && !isCasting){
+            Cast(activeProfile.profileSpell4);
+            cast4Timer.ResetTimer(activeProfile.profileSpell4.SpellToCast.coolDown);
+        }
+    }
+
+    IEnumerator SpellSpawnDelay(float delay, Spell spellToCast){
+        yield return new WaitForSeconds(delay);
+        // set cast point for spell
+        spellToCast.castPoint =  setCastPoint(spellToCast);
+
+        // set aim direction
+        Vector3 aimDir = (mouseWorldPosition - spellToCast.castPoint.position).normalized;
+        // Vector3 aimDir = (mouseWorldPosition - (spellToCast.castPoint.position-spellToCast.SpellToCast.SpawnOffset)).normalized;
+
+         // Spawn spell
+        childObject = Instantiate(spellToCast, spellToCast.castPoint.position, Quaternion.LookRotation(aimDir, Vector3.up) );
+        Physics.IgnoreCollision(childObject.GetComponent<Collider>(), GetComponent<Collider>());
     }
 
     // Things that are done during casting duration
-    void Casting(){
+    void Casting(Spell currentSpell){
         // Disable player movement
-        if(!spellProperties.playerCanMove) _CharacterController.enabled = false;
-        // Increment cast timer
-        currentCastTimer += Time.deltaTime;
-        if(currentCastTimer > timeBetweenCasts) isCastingMagic = false;
+        if(!currentSpell.SpellToCast.playerCanMove) _CharacterController.enabled = false;
     }
-    
-    // Set position for spell to spawn 
-    void setCastPoint(){
-         // assign the cast point to use from the spellscriptobj
-        for (int i = 0; i < 3; i++)
+
+    // Return position for spell to spawn from the spellscriptobj
+    private Transform setCastPoint(Spell currSpell){
+        for (int i = 0; i < castPoints.Count; i++)
         {
-            if(castPoints[i].name == spellProperties.castPoint){
-                castPoint = castPoints[i];
+            if(castPoints[i].name == currSpell.SpellToCast.castPoint){
+                return castPoints[i].transform;
             }
         }
-        castPoint.position += spellProperties.SpawnOffset;
+        return null;
+    }
+
+    private void NextProfile(InputAction.CallbackContext context){
+        if(currentProfileIndex+1 <= profiles.Length-1){
+            currentProfileIndex += 1;
+            activeProfile = profiles[currentProfileIndex]; 
+        }
+        UpdateProfile();
+    }
+    private void PreviousProfile(InputAction.CallbackContext context){
+        if(currentProfileIndex-1 >= 0){
+            currentProfileIndex -= 1;
+            activeProfile = profiles[currentProfileIndex];
+        }
+        UpdateProfile();
+    }
+
+    void UpdateProfile(){
+        profileName.text = activeProfile.ProfileName;
+        //  set profile name visible then fade out
+        profileName.color = new Color(profileName.color.r, profileName.color.g, profileName.color.b, 1);
+        StartCoroutine(FadeTextToZeroAlpha(3f, profileName));
+
+        priSpellName.text = activeProfile.profileSpell1.SpellToCast.spellName;
+        secSpellName.text = activeProfile.profileSpell2.SpellToCast.spellName;
+    }
+
+    private void DisplayMagicStats(){
+        if(!priCooldown.IsFinished()) priSpellCooldown.fillAmount = 1 - (priCooldown._currentTime / priCooldown._duration);
+        if(priCooldown.IsFinished()) priSpellCooldown.fillAmount = 0f;
+
+        if(!secCooldown.IsFinished()) secSpellCooldown.fillAmount = 1 - (secCooldown._currentTime / secCooldown._duration);
+        if(secCooldown.IsFinished()) secSpellCooldown.fillAmount = 0f;
+
+        if(!cast3Timer.IsFinished()) cast3Cooldown.fillAmount = 1 - (cast3Timer._currentTime / cast3Timer._duration);
+        if(cast3Timer.IsFinished()) cast3Cooldown.fillAmount = 0f;
+
+        if(!cast4Timer.IsFinished()) cast4Cooldown.fillAmount = 1 - (cast4Timer._currentTime / cast4Timer._duration);
+        if(cast4Timer.IsFinished()) cast4Cooldown.fillAmount = 0f;
+    }
+
+    // GUI text modifiers
+    public IEnumerator FadeTextToFullAlpha(float t, TextMeshProUGUI i)
+    {
+        i.color = new Color(i.color.r, i.color.g, i.color.b, 0);
+        while (i.color.a < 1.0f)
+        {
+            i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a + (Time.deltaTime / t));
+            yield return null;
+        }
+    }
+ 
+    public IEnumerator FadeTextToZeroAlpha(float t, TextMeshProUGUI i)
+    {
+        i.color = new Color(i.color.r, i.color.g, i.color.b, 1);
+        while (i.color.a > 0.0f)
+        {
+            i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a - (Time.deltaTime / t));
+            yield return null;
+        }
     }
 }

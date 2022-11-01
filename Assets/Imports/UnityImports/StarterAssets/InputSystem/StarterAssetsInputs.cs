@@ -12,7 +12,7 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
-		public bool spellCast;
+		public bool PrimaryCast;
 
 		public bool inventoryMenu;
 
@@ -47,9 +47,9 @@ namespace StarterAssets
 		{
 			SprintInput(value.isPressed);
 		}
-		public void OnSpellCast(InputValue value)
+		public void OnPrimaryCast(InputValue value)
 		{
-			SpellCastInput(value.isPressed);
+			PrimaryCastInput(value.isPressed);
 		}
 
 		public void OnInventoryMenu(InputValue value)
@@ -79,9 +79,9 @@ namespace StarterAssets
 			sprint = newSprintState;
 		}
 
-		public void SpellCastInput(bool newSpellState)
+		public void PrimaryCastInput(bool newSpellState)
 		{
-			spellCast = newSpellState;
+			PrimaryCast = newSpellState;
 		}
 
 		public void InventoryMenuInput(bool newInventoryMenuState)

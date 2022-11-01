@@ -78,7 +78,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 300b2ae656a447f44b98bec5280be574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _data: {fileID: 0}
   SpellToCast: {fileID: 11400000, guid: ab7aa669791ee2c4a8de40df583f2740, type: 2}
+  castPoint: {fileID: 0}
 --- !u!1 &5070914657697271959
 GameObject:
   m_ObjectHideFlags: 0

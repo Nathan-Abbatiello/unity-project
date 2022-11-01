@@ -64,15 +64,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""SpellCast"",
-                    ""type"": ""Button"",
-                    ""id"": ""db62ce94-e57c-461c-8637-45768cb742ba"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""InventoryMenu"",
                     ""type"": ""Button"",
                     ""id"": ""ed94c84a-fd05-40c9-a9b0-447c111f236d"",
@@ -88,6 +79,60 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PrimaryCast"",
+                    ""type"": ""Button"",
+                    ""id"": ""db62ce94-e57c-461c-8637-45768cb742ba"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SecondaryCast"",
+                    ""type"": ""Button"",
+                    ""id"": ""0d56c3c1-39c5-491f-ace2-6f82e9c51107"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextProfile"",
+                    ""type"": ""Button"",
+                    ""id"": ""37353640-ffa2-41ae-b857-baa4f6787752"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PreviousProfile"",
+                    ""type"": ""Button"",
+                    ""id"": ""95ff4a59-cbfb-4313-8c21-0a0933798c05"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cast3"",
+                    ""type"": ""Button"",
+                    ""id"": ""73a81e80-0933-4c93-acb8-575d340230bd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cast4"",
+                    ""type"": ""Button"",
+                    ""id"": ""9aa9f7b8-9f92-46f0-af5e-aa84ac40f0fa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 }
             ],
@@ -270,28 +315,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""5857ed29-b852-48b6-ac05-f81c8b2daabb"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
-                    ""action"": ""SpellCast"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8c3de652-8a8c-4fad-b517-16f2817f0137"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""SpellCast"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""61643e4b-4401-489b-a36e-4dc8ba9661f4"",
                     ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
@@ -331,6 +354,138 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f1eafed0-4daa-4f55-ac4e-7b7bb0dc89ff"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""SecondaryCast"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""76b42fb4-0ba4-47b3-85be-2906f61c5ef2"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SecondaryCast"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5857ed29-b852-48b6-ac05-f81c8b2daabb"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""PrimaryCast"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c3de652-8a8c-4fad-b517-16f2817f0137"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""PrimaryCast"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2d8ae24c-8ba6-447e-8d92-754af65dc8d5"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""NextProfile"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c08fd977-92e1-454e-ac2d-3683aa86fcbc"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""NextProfile"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c39ec898-8240-4346-9526-7c828dcff28c"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""PreviousProfile"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8d84697a-3a42-43af-8c56-84f3e2af4b5c"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""PreviousProfile"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""46c34b5e-9166-4664-bab5-4ad55fd394c6"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Cast3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2f6f5a40-74fa-4c79-a033-ec5c2f38bd13"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Cast3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2d2f9aeb-f801-42e0-b1b9-22a9a4173a54"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Cast4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3e0a3442-b869-4330-b81b-2ce11e8eb59d"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Cast4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -432,9 +587,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
-        m_Player_SpellCast = m_Player.FindAction("SpellCast", throwIfNotFound: true);
         m_Player_InventoryMenu = m_Player.FindAction("InventoryMenu", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_PrimaryCast = m_Player.FindAction("PrimaryCast", throwIfNotFound: true);
+        m_Player_SecondaryCast = m_Player.FindAction("SecondaryCast", throwIfNotFound: true);
+        m_Player_NextProfile = m_Player.FindAction("NextProfile", throwIfNotFound: true);
+        m_Player_PreviousProfile = m_Player.FindAction("PreviousProfile", throwIfNotFound: true);
+        m_Player_Cast3 = m_Player.FindAction("Cast3", throwIfNotFound: true);
+        m_Player_Cast4 = m_Player.FindAction("Cast4", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_CloseMenu = m_UI.FindAction("CloseMenu", throwIfNotFound: true);
@@ -501,9 +661,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Sprint;
-    private readonly InputAction m_Player_SpellCast;
     private readonly InputAction m_Player_InventoryMenu;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_PrimaryCast;
+    private readonly InputAction m_Player_SecondaryCast;
+    private readonly InputAction m_Player_NextProfile;
+    private readonly InputAction m_Player_PreviousProfile;
+    private readonly InputAction m_Player_Cast3;
+    private readonly InputAction m_Player_Cast4;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -512,9 +677,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
-        public InputAction @SpellCast => m_Wrapper.m_Player_SpellCast;
         public InputAction @InventoryMenu => m_Wrapper.m_Player_InventoryMenu;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @PrimaryCast => m_Wrapper.m_Player_PrimaryCast;
+        public InputAction @SecondaryCast => m_Wrapper.m_Player_SecondaryCast;
+        public InputAction @NextProfile => m_Wrapper.m_Player_NextProfile;
+        public InputAction @PreviousProfile => m_Wrapper.m_Player_PreviousProfile;
+        public InputAction @Cast3 => m_Wrapper.m_Player_Cast3;
+        public InputAction @Cast4 => m_Wrapper.m_Player_Cast4;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -536,15 +706,30 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                 @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                 @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
-                @SpellCast.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpellCast;
-                @SpellCast.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpellCast;
-                @SpellCast.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpellCast;
                 @InventoryMenu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventoryMenu;
                 @InventoryMenu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventoryMenu;
                 @InventoryMenu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventoryMenu;
                 @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @PrimaryCast.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryCast;
+                @PrimaryCast.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryCast;
+                @PrimaryCast.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryCast;
+                @SecondaryCast.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryCast;
+                @SecondaryCast.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryCast;
+                @SecondaryCast.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryCast;
+                @NextProfile.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextProfile;
+                @NextProfile.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextProfile;
+                @NextProfile.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextProfile;
+                @PreviousProfile.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPreviousProfile;
+                @PreviousProfile.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPreviousProfile;
+                @PreviousProfile.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPreviousProfile;
+                @Cast3.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCast3;
+                @Cast3.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCast3;
+                @Cast3.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCast3;
+                @Cast4.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCast4;
+                @Cast4.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCast4;
+                @Cast4.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCast4;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -561,15 +746,30 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
-                @SpellCast.started += instance.OnSpellCast;
-                @SpellCast.performed += instance.OnSpellCast;
-                @SpellCast.canceled += instance.OnSpellCast;
                 @InventoryMenu.started += instance.OnInventoryMenu;
                 @InventoryMenu.performed += instance.OnInventoryMenu;
                 @InventoryMenu.canceled += instance.OnInventoryMenu;
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @PrimaryCast.started += instance.OnPrimaryCast;
+                @PrimaryCast.performed += instance.OnPrimaryCast;
+                @PrimaryCast.canceled += instance.OnPrimaryCast;
+                @SecondaryCast.started += instance.OnSecondaryCast;
+                @SecondaryCast.performed += instance.OnSecondaryCast;
+                @SecondaryCast.canceled += instance.OnSecondaryCast;
+                @NextProfile.started += instance.OnNextProfile;
+                @NextProfile.performed += instance.OnNextProfile;
+                @NextProfile.canceled += instance.OnNextProfile;
+                @PreviousProfile.started += instance.OnPreviousProfile;
+                @PreviousProfile.performed += instance.OnPreviousProfile;
+                @PreviousProfile.canceled += instance.OnPreviousProfile;
+                @Cast3.started += instance.OnCast3;
+                @Cast3.performed += instance.OnCast3;
+                @Cast3.canceled += instance.OnCast3;
+                @Cast4.started += instance.OnCast4;
+                @Cast4.performed += instance.OnCast4;
+                @Cast4.canceled += instance.OnCast4;
             }
         }
     }
@@ -649,9 +849,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
-        void OnSpellCast(InputAction.CallbackContext context);
         void OnInventoryMenu(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnPrimaryCast(InputAction.CallbackContext context);
+        void OnSecondaryCast(InputAction.CallbackContext context);
+        void OnNextProfile(InputAction.CallbackContext context);
+        void OnPreviousProfile(InputAction.CallbackContext context);
+        void OnCast3(InputAction.CallbackContext context);
+        void OnCast4(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
