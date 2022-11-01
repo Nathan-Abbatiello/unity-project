@@ -31,10 +31,10 @@ public class Spell : MonoBehaviour
         StartCoroutine(ZeroVelocityTime());
 
         if(SpellToCast.SpawnOffset.x != 0 || SpellToCast.SpawnOffset.y != 0 || SpellToCast.SpawnOffset.z != 0){
-            Debug.Log("offset detected");
+            // Debug.Log("offset detected");
             castPointWOffset = new GameObject(SpellToCast.spellName+" castoffset").transform;
             castPointWOffset.transform.parent = castPoint.transform;
-            castPointWOffset.position = castPoint.position + SpellToCast.SpawnOffset; /////////////// cast roation/ offset direction dependent error
+            castPointWOffset.localPosition = SpellToCast.SpawnOffset; 
         }
     }
 
